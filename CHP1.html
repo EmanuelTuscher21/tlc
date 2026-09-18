@@ -24,7 +24,7 @@
             
             overflow-x: hidden;
 
-            /* Fullscreen Background Image Settings matching the homepage */
+            /* Fullscreen Background Image Settings */
             background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('C1.jpg');
             background-repeat: no-repeat;
             background-position: center center;
@@ -87,16 +87,12 @@
             text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
         }
 
-        /* Navigation Buttons Container */
+        /* Navigation Container */
         .navigation {
             margin-top: 50px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px; /* Spacing between the buttons */
         }
 
-        /* Interactive Navigation Buttons with Smooth Scale & Glow */
+        /* Interactive Navigation Buttons */
         .nav-btn {
             display: inline-block;
             font-family: 'Cinzel', serif;
@@ -108,7 +104,8 @@
             padding: 12px 28px;
             border-radius: 4px;
             text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
-            min-width: 240px; /* Uniform width for aesthetic balance */
+            margin-bottom: 16px;
+            min-width: 240px;
             
             /* Smooth transitions for hovering */
             transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
@@ -123,7 +120,7 @@
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
         }
 
-        /* Highlight style for the Next Chapter action */
+        /* Highlight overlay for Next Chapter */
         .next-btn {
             background-color: rgba(255, 255, 255, 0.1);
         }
@@ -132,7 +129,7 @@
         @media (max-width: 768px) {
             body {
                 margin-top: 50px;
-                background-attachment: scroll; /* Smoother scrolling performance on mobile browsers */
+                background-attachment: scroll;
             }
 
             h1 {
@@ -219,9 +216,10 @@
             As the sun finally dipped below the horizon, the moon rose high into the sky. Midnight passed by peacefully. The day which would change my life forever was near...
         </p>
 
-        <!-- Navigation Block -->
+        <!-- Navigation Section -->
         <div class="navigation">
             <a href="CHP2.html" class="nav-btn next-btn">Read Chapter 2 &#8594;</a>
+            <br>
             <a href="index.html" class="nav-btn">&#8592; Back to Homepage</a>
         </div>
 
