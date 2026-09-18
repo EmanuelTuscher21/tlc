@@ -2,6 +2,7 @@
 <html>
 <head> 
     <title> TLC </title> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google Fonts for modern fantasy / sci-fi styling -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,23 +17,20 @@
             color: #f2f2f2;
 
             /* Push body content down from the top of the screen */
-            margin-top: 150px; 
+            margin-top: 100px; 
             margin-bottom: 100px;
-            
-            /* Prevent text from overlapping side images */
-            padding-left: 420px;
-            padding-right: 420px;
+            padding-left: 20px;
+            padding-right: 20px;
             
             overflow-x: hidden; /* Prevents horizontal scrollbars during entrance animations */
 
-            /* Set background image to repeat vertically down the left and right sides */
-            background-image: url('TH.png'), url('TH.png');
-            background-repeat: repeat-y, repeat-y;
-            background-position: left top, right top;
-            
-            /* Fixed background size removes seam mismatches */
-            background-size: 400px 600px, 400px 600px;
-            background-color: #121212; /* Dark fallback background */
+            /* Fullscreen Background Image Settings */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('TH.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover; /* Stretches and scales image to fill entire screen */
+            background-attachment: fixed; /* Keeps image still while scrolling */
+            background-color: #121212; /* Fallback background */
 
             /* Modern clean body font */
             font-family: 'Inter', sans-serif;
@@ -54,7 +52,7 @@
         @keyframes flyInFromRight {
             from {
                 opacity: 0;
-                transform: translateX(200px);
+                transform: translateX(100px);
             }
             to {
                 opacity: 1;
@@ -69,7 +67,7 @@
             letter-spacing: 3px;
             text-transform: uppercase;
             margin-bottom: 10px;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 255, 255, 0.3);
 
             /* Fade in effect */
             animation: fadeIn 1.2s ease-out forwards;
@@ -80,8 +78,9 @@
             font-family: 'Cinzel', serif;
             font-size: 26px;
             letter-spacing: 2px;
-            color: #b3b3b3;
+            color: #d1d1d1;
             margin-bottom: 40px;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 
             /* Fade in effect with slight delay */
             animation: fadeIn 1.2s ease-out 0.3s forwards;
@@ -119,9 +118,10 @@
             display: inline-block; /* Required for transform scaling */
             font-size: 20px;
             letter-spacing: 1px;
-            color: #e0e0e0;
+            color: #ffffff;
             text-decoration: none;
             border-bottom: 1px solid transparent;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
             
             /* Smooth transition for upscaling and downscaling */
             transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease, border-color 0.3s ease;
@@ -133,7 +133,31 @@
             color: #ffffff;
             border-bottom: 1px solid #ffffff;
             transform: scale(1.15); /* Scales up to 115% size */
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Mobile Screen Optimizations */
+        @media (max-width: 768px) {
+            body {
+                margin-top: 50px;
+                /* Fixed background attachments can lag on iOS/Android; scroll mode works smoother on mobile */
+                background-attachment: scroll; 
+            }
+
+            h1 {
+                font-size: 32px;
+                letter-spacing: 1px;
+            }
+
+            h2 {
+                font-size: 18px;
+                letter-spacing: 1px;
+                margin-bottom: 30px;
+            }
+
+            a {
+                font-size: 18px;
+            }
         }
     </style>
 </head>
