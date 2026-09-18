@@ -2,6 +2,7 @@
 <html>
 <head> 
     <title> TLC - Chapter 1 </title> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google Fonts for modern fantasy / sci-fi styling -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,27 +16,30 @@
             /* Set text color for the entire page */
             color: #f2f2f2;
 
-            /* Layout spacing */
+            /* Push body content down from the top of the screen */
             margin-top: 100px; 
-            margin-bottom: 120px;
+            margin-bottom: 100px;
+            padding-left: 20px;
+            padding-right: 20px;
+            
             overflow-x: hidden;
 
-            /* Infinite repeating side images matching homepage */
-            background-image: url('C1.jpg'), url('C1.jpg');
-            background-repeat: repeat-y, repeat-y;
-            background-position: left top, right top;
-            background-size: 400px auto, 400px auto;
+            /* Fullscreen Background Image Settings matching the homepage */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('TH.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover; /* Stretches and scales image to fill entire screen */
+            background-attachment: fixed; /* Keeps image fixed while scrolling */
             background-color: #121212; /* Dark fallback background */
 
             /* Modern clean body font */
             font-family: 'Inter', sans-serif;
         }
 
-        /* Container to constrain reading width for clean typography */
+        /* Container to constrain reading width for clean readability */
         .content-wrapper {
-            max-width: 750px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 0 20px;
 
             /* Smooth fade-in animation for the entire content block */
             animation: fadeIn 1.2s ease-out forwards;
@@ -56,11 +60,11 @@
         /* Main Story Title */
         h1 {
             font-family: 'Cinzel', serif;
-            font-size: 44px;
+            font-size: 48px;
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-bottom: 10px;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.9), 0 0 10px rgba(255, 255, 255, 0.2);
         }
 
         /* Chapter Subtitle */
@@ -68,17 +72,19 @@
             font-family: 'Cinzel', serif;
             font-size: 24px;
             letter-spacing: 1.5px;
-            color: #b3b3b3;
+            color: #d1d1d1;
             margin-bottom: 50px;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
         }
 
-        /* Paragraph Styling with Centered Reading Layout */
+        /* Paragraph Styling */
         p {
             font-size: 19px;
             line-height: 1.8;
             letter-spacing: 0.5px;
-            color: #d1d1d1;
+            color: #e0e0e0;
             margin-bottom: 28px;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
         }
 
         /* Back Button Container */
@@ -92,11 +98,12 @@
             font-family: 'Cinzel', serif;
             font-size: 20px;
             letter-spacing: 1.5px;
-            color: #e0e0e0;
+            color: #ffffff;
             text-decoration: none;
-            border: 1px solid #e0e0e0;
+            border: 1px solid #ffffff;
             padding: 12px 28px;
             border-radius: 4px;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
             
             /* Smooth transitions for hovering */
             transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
@@ -108,7 +115,36 @@
             color: #ffffff;
             border-color: #ffffff;
             transform: scale(1.1);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Mobile Screen Optimizations */
+        @media (max-width: 768px) {
+            body {
+                margin-top: 50px;
+                background-attachment: scroll; /* Smoother scrolling performance on mobile browsers */
+            }
+
+            h1 {
+                font-size: 30px;
+                letter-spacing: 1px;
+            }
+
+            h2 {
+                font-size: 18px;
+                letter-spacing: 1px;
+                margin-bottom: 30px;
+            }
+
+            p {
+                font-size: 16px;
+                line-height: 1.6;
+            }
+
+            .back-btn {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
         }
     </style>
 </head>
@@ -174,7 +210,7 @@
 
         <!-- Back Button Navigation -->
         <div class="navigation">
-            <a href="https://emanueltuscher21.github.io/tlc/" class="back-btn">&#8592; Back to Homepage</a>
+            <a href="index.html" class="back-btn">&#8592; Back to Homepage</a>
         </div>
 
     </div>
