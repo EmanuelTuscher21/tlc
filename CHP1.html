@@ -87,13 +87,17 @@
             text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
         }
 
-        /* Back Button Container */
+        /* Navigation Buttons Container */
         .navigation {
             margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px; /* Spacing between the buttons */
         }
 
-        /* Interactive Back Button with Smooth Scale & Glow */
-        .back-btn {
+        /* Interactive Navigation Buttons with Smooth Scale & Glow */
+        .nav-btn {
             display: inline-block;
             font-family: 'Cinzel', serif;
             font-size: 20px;
@@ -104,18 +108,24 @@
             padding: 12px 28px;
             border-radius: 4px;
             text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
+            min-width: 240px; /* Uniform width for aesthetic balance */
             
             /* Smooth transitions for hovering */
             transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
             transform: scale(1);
         }
 
-        /* Back Button Hover Effect */
-        .back-btn:hover {
+        /* Hover Effect for Navigation Buttons */
+        .nav-btn:hover {
             color: #ffffff;
             border-color: #ffffff;
-            transform: scale(1.1);
+            transform: scale(1.08);
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Highlight style for the Next Chapter action */
+        .next-btn {
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
         /* Mobile Screen Optimizations */
@@ -141,9 +151,10 @@
                 line-height: 1.6;
             }
 
-            .back-btn {
+            .nav-btn {
                 font-size: 16px;
                 padding: 10px 20px;
+                min-width: 200px;
             }
         }
     </style>
@@ -208,9 +219,10 @@
             As the sun finally dipped below the horizon, the moon rose high into the sky. Midnight passed by peacefully. The day which would change my life forever was near...
         </p>
 
-        <!-- Back Button Navigation -->
+        <!-- Navigation Block -->
         <div class="navigation">
-            <a href="index.html" class="back-btn">&#8592; Back to Homepage</a>
+            <a href="https://emanueltuscher21.github.io/tlc/CHP2.html" class="nav-btn next-btn">Read Chapter 2 &#8594;</a>
+            <a href="index.html" class="nav-btn">&#8592; Back to Homepage</a>
         </div>
 
     </div>
