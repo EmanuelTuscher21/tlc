@@ -10,11 +10,9 @@
 
     <style>
         body {
-            /* Center alignment */
             text-align: center;
             color: #f2f2f2;
 
-            /* Page margins & padding */
             margin-top: 80px; 
             margin-bottom: 80px;
             padding-left: 20px;
@@ -22,7 +20,6 @@
             
             overflow-x: hidden;
 
-            /* Fullscreen Background Image Settings */
             background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('BG.png');
             background-repeat: no-repeat;
             background-position: center center;
@@ -33,7 +30,6 @@
             font-family: 'Inter', sans-serif;
         }
 
-        /* Fade-in Animation */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -51,7 +47,6 @@
             animation: fadeIn 1.2s ease-out forwards;
         }
 
-        /* Main Headline: About me */
         h1 {
             font-family: 'Cinzel', serif;
             font-size: 52px;
@@ -61,7 +56,6 @@
             text-shadow: 0 0 15px rgba(0, 0, 0, 0.9), 0 0 10px rgba(255, 255, 255, 0.2);
         }
 
-        /* Sub Headline: Emanuel Tuscher */
         h2 {
             font-family: 'Cinzel', serif;
             font-size: 30px;
@@ -71,23 +65,60 @@
             text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
         }
 
-        /* Image Styling */
         .profile-img {
             max-width: 100%;
             height: auto;
-            width: 350px; /* Responsive size */
+            width: 350px;
             border-radius: 8px;
             border: 2px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            margin-bottom: 30px;
+        }
+
+        /* Bio Description Text */
+        .bio-text {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #e0e0e0;
+            max-width: 650px;
+            margin: 0 auto 35px auto;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
+        }
+
+        /* Contact Action Buttons Container */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
             margin-bottom: 40px;
         }
 
-        /* Navigation Container */
-        .navigation {
-            margin-top: 30px;
+        .action-btn {
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            letter-spacing: 1px;
+            color: #ffffff;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 1px solid #ffffff;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
+            transition: all 0.3s ease;
         }
 
-        /* Buttons */
+        .action-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+        }
+
+        .navigation {
+            margin-top: 20px;
+        }
+
         .nav-btn {
             display: inline-block;
             font-family: 'Cinzel', serif;
@@ -101,41 +132,32 @@
             text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
             margin-bottom: 16px;
             min-width: 240px;
-            
             transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-            transform: scale(1);
         }
 
         .nav-btn:hover {
-            color: #ffffff;
-            border-color: #ffffff;
             transform: scale(1.08);
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
         }
 
-        /* Mobile Screen Adjustments */
         @media (max-width: 768px) {
             body {
                 margin-top: 40px;
                 background-attachment: scroll;
             }
 
-            h1 {
-                font-size: 36px;
+            h1 { font-size: 36px; }
+            h2 { font-size: 22px; }
+            .profile-img { width: 80%; }
+            .bio-text { font-size: 16px; }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
             }
 
-            h2 {
-                font-size: 22px;
-            }
-
-            .profile-img {
+            .action-btn {
                 width: 80%;
-            }
-
-            .nav-btn {
-                font-size: 16px;
-                padding: 10px 20px;
-                min-width: 200px;
             }
         }
     </style>
@@ -148,15 +170,41 @@
         <h1> About me </h1>
         <h2> Emanuel Tuscher </h2>
 
-        <!-- Fixed image tag and source name -->
+        <!-- Profile Image -->
         <img src="Con1.jpeg" alt="Emanuel Tuscher" class="profile-img">
 
-        <!-- Navigation Buttons -->
+        <!-- Bio Paragraph -->
+        <p class="bio-text">
+            Hi, I'm Emanuel and I'm 16 years old. I have made this website just out of fun. I do various of things. I hope you enjoy my work and if any mistakes on the websites are found then immediately tell me on my Contact down here.
+        </p>
+
+        <!-- Interactive Contact Buttons -->
+        <div class="action-buttons">
+            <button class="action-btn" id="copyBtn" onclick="copyUsername()">Copy Discord Username</button>
+            <a href="https://discord.gg/UCYVgytPF" target="_blank" class="action-btn">Discord Server</a>
+        </div>
+
+        <!-- Return to Homepage Navigation -->
         <div class="navigation">
             <a href="index.html" class="nav-btn">&#8592; Back to Homepage</a>
         </div>
 
     </div>
+
+    <script>
+        function copyUsername() {
+            navigator.clipboard.writeText('knockedguy').then(() => {
+                const btn = document.getElementById('copyBtn');
+                btn.textContent = 'Copied "knockedguy"!';
+                btn.style.borderColor = '#4CAF50';
+                
+                setTimeout(() => {
+                    btn.textContent = 'Copy Discord Username';
+                    btn.style.borderColor = '#ffffff';
+                }, 2500);
+            });
+        }
+    </script>
 
 </body>
 </html>
