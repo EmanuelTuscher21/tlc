@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+<head> 
+    <title> TLC - About Me </title> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            /* Center alignment */
+            text-align: center;
+            color: #f2f2f2;
+
+            /* Page margins & padding */
+            margin-top: 80px; 
+            margin-bottom: 80px;
+            padding-left: 20px;
+            padding-right: 20px;
+            
+            overflow-x: hidden;
+
+            /* Fullscreen Background Image Settings */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('BG.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background-attachment: fixed;
+            background-color: #121212;
+
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+
+        /* Main Headline: About me */
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 52px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.9), 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Sub Headline: Emanuel Tuscher */
+        h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 30px;
+            letter-spacing: 1.5px;
+            color: #d1d1d1;
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+        }
+
+        /* Image Styling */
+        .profile-img {
+            max-width: 100%;
+            height: auto;
+            width: 350px; /* Responsive size */
+            border-radius: 8px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            margin-bottom: 40px;
+        }
+
+        /* Navigation Container */
+        .navigation {
+            margin-top: 30px;
+        }
+
+        /* Buttons */
+        .nav-btn {
+            display: inline-block;
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+            text-decoration: none;
+            border: 1px solid #ffffff;
+            padding: 12px 28px;
+            border-radius: 4px;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
+            margin-bottom: 16px;
+            min-width: 240px;
+            
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            transform: scale(1);
+        }
+
+        .nav-btn:hover {
+            color: #ffffff;
+            border-color: #ffffff;
+            transform: scale(1.08);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Mobile Screen Adjustments */
+        @media (max-width: 768px) {
+            body {
+                margin-top: 40px;
+                background-attachment: scroll;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            .profile-img {
+                width: 80%;
+            }
+
+            .nav-btn {
+                font-size: 16px;
+                padding: 10px 20px;
+                min-width: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="content-wrapper">
+
+        <h1> About me </h1>
+        <h2> Emanuel Tuscher </h2>
+
+        <!-- Profile / Contact Image -->
+        <img src="con1.png" alt="Emanuel Tuscher" class="profile-img">
+
+        <!-- Navigation Buttons -->
+        <div class="navigation">
+            <a href="index.html" class="nav-btn">&#8592; Back to Homepage</a>
+        </div>
+
+    </div>
+
+</body>
+</html>
