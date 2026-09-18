@@ -18,13 +18,20 @@
             /* Push body content down from the top of the screen */
             margin-top: 150px; 
             margin-bottom: 100px;
+            
+            /* Prevent text from overlapping side images */
+            padding-left: 420px;
+            padding-right: 420px;
+            
             overflow-x: hidden; /* Prevents horizontal scrollbars during entrance animations */
 
             /* Set background image to repeat vertically down the left and right sides */
             background-image: url('TH.png'), url('TH.png');
             background-repeat: repeat-y, repeat-y;
             background-position: left top, right top;
-            background-size: 400px auto, 400px auto;
+            
+            /* Fixed background size removes seam mismatches */
+            background-size: 400px 600px, 400px 600px;
             background-color: #121212; /* Dark fallback background */
 
             /* Modern clean body font */
