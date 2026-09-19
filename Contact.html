@@ -85,6 +85,11 @@
             text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
         }
 
+        /* Section Spacing */
+        .section-spacer {
+            margin-top: 50px;
+        }
+
         /* Contact Action Buttons Container */
         .action-buttons {
             display: flex;
@@ -107,6 +112,7 @@
             text-decoration: none;
             text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
             transition: all 0.3s ease;
+            display: inline-block;
         }
 
         .action-btn:hover {
@@ -116,7 +122,7 @@
         }
 
         .navigation {
-            margin-top: 20px;
+            margin-top: 60px;
         }
 
         .nav-btn {
@@ -170,18 +176,34 @@
         <h1> About me </h1>
         <h2> Emanuel Tuscher </h2>
 
-        <!-- Profile Image -->
+        <!-- First Profile Image -->
         <img src="Con1.jpeg" alt="Emanuel Tuscher" class="profile-img">
 
-        <!-- Bio Paragraph -->
+        <!-- First Bio Paragraph -->
         <p class="bio-text">
             Hi, I'm Emanuel and I'm 16 years old. I have made this website just out of fun. I do various of things. I hope you enjoy my work and if any mistakes on the websites are found then immediately tell me on my Contact down here.
         </p>
 
-        <!-- Interactive Contact Buttons -->
+        <!-- Interactive Discord Contact Buttons -->
         <div class="action-buttons">
             <button class="action-btn" id="copyBtn" onclick="copyUsername()">Copy Discord Username</button>
             <a href="https://discord.gg/UCYVgytPF" target="_blank" class="action-btn">Discord Server</a>
+        </div>
+
+        <!-- Second Section: YouTube -->
+        <div class="section-spacer">
+            <!-- Second Image (Con2) -->
+            <img src="Con2.jpeg" alt="YouTube Channel" class="profile-img">
+
+            <!-- YouTube Bio Paragraph -->
+            <p class="bio-text">
+                I also have a youtube channel which hasn't got any videos yet but I will make videos on how to make any ressourcepack sooner or later.
+            </p>
+
+            <!-- YouTube Channel Button -->
+            <div class="action-buttons">
+                <a href="https://www.youtube.com/@ResourceCraft" target="_blank" class="action-btn">YouTube Channel</a>
+            </div>
         </div>
 
         <!-- Return to Homepage Navigation -->
