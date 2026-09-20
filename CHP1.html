@@ -294,7 +294,7 @@
 
         <!-- Interactive Heart Button -->
         <div class="heart-container">
-            <button class="heart-btn" id="likeBtn">
+            <button class="heart-btn" id="likeBtn" disabled>
                 <span class="heart-icon" id="heartIcon">🤍</span> 
                 <span>Like</span>
                 <span class="like-count" id="likeCount">(0)</span>
@@ -310,154 +310,151 @@
 
     </div>
 
-    <!-- Firebase SDK Imports -->
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { 
-          getFirestore, doc, onSnapshot, runTransaction, arrayUnion, arrayRemove, increment 
-        } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, deleteDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Firebase Configuration - Replace with your project keys from Firebase Console
-        const firebaseConfig = {
-            apiKey: "YOUR_FIREBASE_API_KEY",
-            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_PROJECT_ID.appspot.com",
-            messagingSenderId: "YOUR_SENDER_ID",
-            appId: "YOUR_APP_ID"
+        // Firebase configuration fallback
+        const defaultConfig = {
+            apiKey: "AIzaSyDemoKeyFallbackOnly12345",
+            authDomain: "tlc-story.firebaseapp.com",
+            projectId: "tlc-story",
+            storageBucket: "tlc-story.appspot.com",
+            messagingSenderId: "123456789",
+            appId: "1:123456789:web:abcdef123456"
         };
 
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : defaultConfig;
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'tlc-story-app';
+
         const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // Persistent Device ID across visits
-        let deviceId = localStorage.getItem('tlc_user_id');
-        if (!deviceId) {
-            deviceId = 'user_' + Math.random().toString(36).substring(2, 15);
-            localStorage.setItem('tlc_user_id', deviceId);
-        }
+        const chapterId = 'chapter_1';
+        const storageKey = `tlc_${chapterId}_liked`;
 
         const btn = document.getElementById('likeBtn');
         const icon = document.getElementById('heartIcon');
         const countSpan = document.getElementById('likeCount');
-        const docRef = doc(db, "chapters", "chapter_1");
 
+        let isLiked = localStorage.getItem(storageKey) === 'true';
+        let currentUserId = null;
         let isProcessing = false;
 
-        // 1. Real-time Firebase listener
-        onSnapshot(docRef, (docSnap) => {
-            if (docSnap.exists()) {
-                const data = docSnap.data();
-                const likedBy = data.likedBy || [];
-                
-                countSpan.textContent = `(${data.count !== undefined ? data.count : likedBy.length})`;
+        // Render local state immediately while authenticating
+        updateUI(0);
 
-                if (likedBy.includes(deviceId)) {
-                    btn.classList.add('liked');
-                    icon.textContent = '❤️';
+        // Authenticate user anonymously
+        async function initAuth() {
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
                 } else {
-                    btn.classList.remove('liked');
-                    icon.textContent = '🤍';
+                    await signInAnonymously(auth);
                 }
-            } else {
-                countSpan.textContent = '(0)';
-                btn.classList.remove('liked');
-                icon.textContent = '🤍';
+            } catch (err) {
+                console.warn('Auth error, falling back to local toggle mode:', err);
+                enableLocalFallback();
             }
-        }, (err) => {
-            console.warn("Firestore listener error or missing config:", err);
+        }
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                currentUserId = user.uid;
+                btn.disabled = false;
+                listenToLikes();
+            }
         });
 
-        // 2. Atomic Toggle Click Handler
-        btn.addEventListener('click', async () => {
+        // Listen for real-time total likes across all users
+        function listenToLikes() {
+            const likesCollectionRef = collection(db, 'artifacts', appId, 'public', 'data', `${chapterId}_likes`);
+
+            onSnapshot(likesCollectionRef, (snapshot) => {
+                const totalLikes = snapshot.size;
+                
+                // If user's document exists in snapshot, sync state
+                if (currentUserId) {
+                    const userDocExists = snapshot.docs.some(doc => doc.id === currentUserId);
+                    if (userDocExists) {
+                        isLiked = true;
+                        localStorage.setItem(storageKey, 'true');
+                    }
+                }
+                
+                updateUI(totalLikes);
+            }, (error) => {
+                console.error("Error fetching likes:", error);
+                enableLocalFallback();
+            });
+        }
+
+        // Toggle like status persistently
+        async function toggleLike() {
             if (isProcessing) return;
             isProcessing = true;
 
-            try {
-                await runTransaction(db, async (transaction) => {
-                    const sfDoc = await transaction.get(docRef);
-                    
-                    if (!sfDoc.exists()) {
-                        transaction.set(docRef, { count: 1, likedBy: [deviceId] });
-                        return;
-                    }
+            // Optimistic UI update
+            const oldIsLiked = isLiked;
+            isLiked = !isLiked;
 
-                    const data = sfDoc.data();
-                    const likedBy = data.likedBy || [];
-                    const isLiked = likedBy.includes(deviceId);
-
-                    if (isLiked) {
-                        transaction.update(docRef, {
-                            count: increment(-1),
-                            likedBy: arrayRemove(deviceId)
-                        });
-                    } else {
-                        transaction.update(docRef, {
-                            count: increment(1),
-                            likedBy: arrayUnion(deviceId)
-                        });
-                    }
-                });
-            } catch (e) {
-                console.error("Like action failed:", e);
-            } finally {
-                isProcessing = false;
+            if (isLiked) {
+                localStorage.setItem(storageKey, 'true');
+            } else {
+                localStorage.removeItem(storageKey);
             }
-        });
-    <!-- Navigation Section -->
-        <div class="navigation">
-            <a href="https://emanueltuscher21.github.io/tlc/CHP2.html" class="nav-btn next-btn">Read Chapter 2 &#8594;</a>
-            <br>
-            <a href="index.html" class="nav-btn">&#8592; Back to Homepage</a>
-        </div>
 
-    </div>
+            let currentCount = parseInt(countSpan.textContent.replace(/\D/g, '')) || 0;
+            let optimisticCount = isLiked ? currentCount + 1 : Math.max(0, currentCount - 1);
+            updateUI(optimisticCount);
 
-    <!-- PLACE YOUR SCRIPT HERE (Above </body>) -->
-    <script>
-        <script>
-    // Select HTML elements
-    const btn = document.getElementById('likeBtn');
-    const icon = document.getElementById('heartIcon');
-    const countSpan = document.getElementById('likeCount');
-
-    // Load saved state from browser storage (Defaults to unliked, count = 0)
-    let isLiked = localStorage.getItem('tlc_c1_liked') === 'true';
-    let baseCount = parseInt(localStorage.getItem('tlc_c1_count') || '0', 10);
-
-    // Function to refresh button appearance
-    function updateUI() {
-        countSpan.textContent = `(${baseCount})`;
-        if (isLiked) {
-            btn.classList.add('liked');
-            icon.textContent = '❤️';
-        } else {
-            btn.classList.remove('liked');
-            icon.textContent = '🤍';
-        }
-    }
-
-    // Run on page load
-    updateUI();
-
-    // Click handler to toggle like state
-    btn.addEventListener('click', () => {
-        isLiked = !isLiked;
-        if (isLiked) {
-            baseCount += 1;
-        } else {
-            baseCount -= 1;
+            if (currentUserId && db) {
+                const userLikeDoc = doc(db, 'artifacts', appId, 'public', 'data', `${chapterId}_likes`, currentUserId);
+                try {
+                    if (isLiked) {
+                        await setDoc(userLikeDoc, { likedAt: new Date().toISOString() });
+                    } else {
+                        await deleteDoc(userLikeDoc);
+                    }
+                } catch (err) {
+                    console.error("Failed to update database like state:", err);
+                    // Revert optimistic state on failure
+                    isLiked = oldIsLiked;
+                    if (isLiked) {
+                        localStorage.setItem(storageKey, 'true');
+                    } else {
+                        localStorage.removeItem(storageKey);
+                    }
+                    updateUI(currentCount);
+                }
+            }
+            isProcessing = false;
         }
 
-        // Save new values to reader's browser storage
-        localStorage.setItem('tlc_c1_liked', isLiked);
-        localStorage.setItem('tlc_c1_count', baseCount);
+        function updateUI(count) {
+            countSpan.textContent = `(${count})`;
 
-        // Update button visual state
-        updateUI();
-    });
-</script>
+            if (isLiked) {
+                icon.textContent = '❤️';
+                btn.classList.add('liked');
+            } else {
+                icon.textContent = '🤍';
+                btn.classList.remove('liked');
+            }
+        }
+
+        function enableLocalFallback() {
+            btn.disabled = false;
+            let fallbackCount = isLiked ? 1 : 0;
+            updateUI(fallbackCount);
+        }
+
+        btn.addEventListener('click', toggleLike);
+
+        // Start Auth process
+        initAuth();
     </script>
-
 </body>
 </html>
