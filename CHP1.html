@@ -404,6 +404,60 @@
                 isProcessing = false;
             }
         });
+    <!-- Navigation Section -->
+        <div class="navigation">
+            <a href="https://emanueltuscher21.github.io/tlc/CHP2.html" class="nav-btn next-btn">Read Chapter 2 &#8594;</a>
+            <br>
+            <a href="index.html" class="nav-btn">&#8592; Back to Homepage</a>
+        </div>
+
+    </div>
+
+    <!-- PLACE YOUR SCRIPT HERE (Above </body>) -->
+    <script>
+        <script>
+    // Select HTML elements
+    const btn = document.getElementById('likeBtn');
+    const icon = document.getElementById('heartIcon');
+    const countSpan = document.getElementById('likeCount');
+
+    // Load saved state from browser storage (Defaults to unliked, count = 0)
+    let isLiked = localStorage.getItem('tlc_c1_liked') === 'true';
+    let baseCount = parseInt(localStorage.getItem('tlc_c1_count') || '0', 10);
+
+    // Function to refresh button appearance
+    function updateUI() {
+        countSpan.textContent = `(${baseCount})`;
+        if (isLiked) {
+            btn.classList.add('liked');
+            icon.textContent = '❤️';
+        } else {
+            btn.classList.remove('liked');
+            icon.textContent = '🤍';
+        }
+    }
+
+    // Run on page load
+    updateUI();
+
+    // Click handler to toggle like state
+    btn.addEventListener('click', () => {
+        isLiked = !isLiked;
+        if (isLiked) {
+            baseCount += 1;
+        } else {
+            baseCount -= 1;
+        }
+
+        // Save new values to reader's browser storage
+        localStorage.setItem('tlc_c1_liked', isLiked);
+        localStorage.setItem('tlc_c1_count', baseCount);
+
+        // Update button visual state
+        updateUI();
+    });
+</script>
     </script>
+
 </body>
 </html>
