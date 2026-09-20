@@ -1,6 +1,6 @@
 <!doctype html>
 <html>
-<head> 
+<head>
     <title> TLC - Chapter 1 </title> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google Fonts for modern fantasy / sci-fi styling -->
@@ -87,9 +87,60 @@
             text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
         }
 
+        /* Heart Button Container */
+        .heart-container {
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .heart-btn {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50px;
+            padding: 10px 24px;
+            font-size: 22px;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: 'Cinzel', serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            user-select: none;
+        }
+
+        .heart-icon {
+            font-size: 28px;
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .heart-btn:hover {
+            transform: scale(1.08);
+            border-color: #ffffff;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Active/Liked State */
+        .heart-btn.liked {
+            border-color: #ff4d4d;
+            background: rgba(255, 77, 77, 0.15);
+            box-shadow: 0 0 15px rgba(255, 77, 77, 0.4);
+        }
+
+        .heart-btn.liked .heart-icon {
+            transform: scale(1.25);
+        }
+
+        /* Pop animation when clicked */
+        .heart-btn:active .heart-icon {
+            transform: scale(1.4);
+        }
+
         /* Navigation Container */
         .navigation {
-            margin-top: 50px;
+            margin-top: 30px;
         }
 
         /* Interactive Navigation Buttons */
@@ -153,6 +204,15 @@
                 padding: 10px 20px;
                 min-width: 200px;
             }
+
+            .heart-btn {
+                font-size: 18px;
+                padding: 8px 20px;
+            }
+
+            .heart-icon {
+                font-size: 24px;
+            }
         }
     </style>
 </head>
@@ -169,7 +229,7 @@
         </p>
 
         <p>
-            I have a brother named Liam that lived in the same small apartment as me. After getting dressed, I walk to my brother's room to wake him up, but to my surprise he is not there—only 20 pounds on his bed that he probably left for me. "At least it's still enough for some food," I said to myself, before putting the cash into my pocket and heading downstairs to eat breakfast.
+            I have a brother named Liam that lives in the same small apartment as me. After getting dressed, I walk to my brother's room to wake him up, but to my surprise he is not there—only 20 pounds on his bed that he probably left for me. "At least it's still enough for some food," I said to myself, before putting the cash into my pocket and heading downstairs to eat breakfast.
         </p>
 
         <p>
@@ -189,7 +249,7 @@
         </p>
 
         <p>
-            I just completely ignored them, not giving a damn about it; I was just thinking they were not worth my precious time. After a long walk home, I finally arrived. I took off my coat, put down my backpack, and took a seat in my chair before starting my homework. But as time passed, my vision started to blur.
+            I just completely ignored them, not giving a damn about it; I was just thinking they were not worth my precious time. After a long walk home, I finally arrived. I took off my jacket, put down my backpack, and took a seat in my chair before starting my homework. But as time passed, my vision started to blur.
         </p>
 
         <p>
@@ -216,6 +276,13 @@
             As the sun finally dipped below the horizon, the moon rose high into the sky. Midnight passed by peacefully. The day which would change my life forever was near...
         </p>
 
+        <!-- Interactive Heart Button -->
+        <div class="heart-container">
+            <button class="heart-btn" id="likeBtn" onclick="toggleHeart()">
+                <span class="heart-icon" id="heartIcon">🤍</span> Like
+            </button>
+        </div>
+
         <!-- Navigation Section -->
         <div class="navigation">
             <a href="https://emanueltuscher21.github.io/tlc/CHP2.html" class="nav-btn next-btn">Read Chapter 2 &#8594;</a>
@@ -224,6 +291,22 @@
         </div>
 
     </div>
+
+    <!-- Heart Toggle Script -->
+    <script>
+        function toggleHeart() {
+            const btn = document.getElementById('likeBtn');
+            const icon = document.getElementById('heartIcon');
+
+            if (icon.textContent === '🤍') {
+                icon.textContent = '❤️';
+                btn.classList.add('liked');
+            } else {
+                icon.textContent = '🤍';
+                btn.classList.remove('liked');
+            }
+        }
+    </script>
 
 </body>
 </html>
