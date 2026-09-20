@@ -1,460 +1,191 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title> TLC - Chapter 1 </title> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Google Fonts for modern fantasy / sci-fi styling -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Last Consequence - Chapter 1</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+      line-height: 1.6;
+      color: #333;
+    }
 
-    <style>
-        body {
-            /* Center all text on the webpage */
-            text-align: center;
+    h1 {
+      margin-bottom: 5px;
+    }
 
-            /* Set text color for the entire page */
-            color: #f2f2f2;
+    .subtitle {
+      font-style: italic;
+      color: #666;
+      margin-bottom: 30px;
+    }
 
-            /* Push body content down from the top of the screen */
-            margin-top: 100px; 
-            margin-bottom: 100px;
-            padding-left: 20px;
-            padding-right: 20px;
-            
-            overflow-x: hidden;
+    p {
+      margin-bottom: 1.2em;
+    }
 
-            /* Fullscreen Background Image Settings */
-            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('C1.jpg');
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: cover; /* Stretches and scales image to fill entire screen */
-            background-attachment: fixed; /* Keeps image fixed while scrolling */
-            background-color: #121212; /* Dark fallback background */
+    /* Like Button Styling */
+    .like-section {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #ccc;
+    }
 
-            /* Modern clean body font */
-            font-family: 'Inter', sans-serif;
-        }
+    .like-btn {
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-        /* Container to constrain reading width for clean readability */
-        .content-wrapper {
-            max-width: 800px;
-            margin: 0 auto;
+    .like-btn:hover {
+      background-color: #e4e4e4;
+    }
 
-            /* Smooth fade-in animation for the entire content block */
-            animation: fadeIn 1.2s ease-out forwards;
-        }
+    /* Active State when user has liked */
+    .like-btn.liked {
+      background-color: #ffe6e6;
+      border-color: #ff4d4d;
+      color: #e60000;
+    }
 
-        /* Fade-in Animation */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-15px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Main Story Title */
-        h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 48px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            text-shadow: 0 0 15px rgba(0, 0, 0, 0.9), 0 0 10px rgba(255, 255, 255, 0.2);
-        }
-
-        /* Chapter Subtitle */
-        h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 24px;
-            letter-spacing: 1.5px;
-            color: #d1d1d1;
-            margin-bottom: 50px;
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
-        }
-
-        /* Paragraph Styling */
-        p {
-            font-size: 19px;
-            line-height: 1.8;
-            letter-spacing: 0.5px;
-            color: #e0e0e0;
-            margin-bottom: 28px;
-            text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
-        }
-
-        /* Heart Button Container */
-        .heart-container {
-            margin-top: 40px;
-            margin-bottom: 20px;
-        }
-
-        .heart-btn {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 50px;
-            padding: 10px 24px;
-            font-size: 20px;
-            cursor: pointer;
-            color: #ffffff;
-            font-family: 'Cinzel', serif;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-            user-select: none;
-            min-width: 170px;
-        }
-
-        .heart-btn:disabled {
-            opacity: 0.7;
-            cursor: wait;
-        }
-
-        .heart-icon {
-            font-size: 26px;
-            display: inline-block;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .like-count {
-            font-size: 18px;
-            font-weight: 600;
-            color: #d1d1d1;
-            margin-left: 2px;
-        }
-
-        .heart-btn:hover:not(:disabled) {
-            transform: scale(1.08);
-            border-color: #ffffff;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-        }
-
-        /* Active/Liked State */
-        .heart-btn.liked {
-            border-color: #ff4d4d;
-            background: rgba(255, 77, 77, 0.2);
-            box-shadow: 0 0 15px rgba(255, 77, 77, 0.5);
-        }
-
-        .heart-btn.liked .heart-icon {
-            transform: scale(1.2);
-        }
-
-        /* Pop animation when active */
-        .heart-btn:active:not(:disabled) .heart-icon {
-            transform: scale(1.4);
-        }
-
-        /* Navigation Container */
-        .navigation {
-            margin-top: 30px;
-        }
-
-        /* Interactive Navigation Buttons */
-        .nav-btn {
-            display: inline-block;
-            font-family: 'Cinzel', serif;
-            font-size: 20px;
-            letter-spacing: 1.5px;
-            color: #ffffff;
-            text-decoration: none;
-            border: 1px solid #ffffff;
-            padding: 12px 28px;
-            border-radius: 4px;
-            text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
-            margin-bottom: 16px;
-            min-width: 240px;
-            
-            /* Smooth transitions for hovering */
-            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-            transform: scale(1);
-        }
-
-        /* Hover Effect for Navigation Buttons */
-        .nav-btn:hover {
-            color: #ffffff;
-            border-color: #ffffff;
-            transform: scale(1.08);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-        }
-
-        /* Highlight overlay for Next Chapter */
-        .next-btn {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        /* Mobile Screen Optimizations */
-        @media (max-width: 768px) {
-            body {
-                margin-top: 50px;
-                background-attachment: scroll;
-            }
-
-            h1 {
-                font-size: 30px;
-                letter-spacing: 1px;
-            }
-
-            h2 {
-                font-size: 18px;
-                letter-spacing: 1px;
-                margin-bottom: 30px;
-            }
-
-            p {
-                font-size: 16px;
-                line-height: 1.6;
-            }
-
-            .nav-btn {
-                font-size: 16px;
-                padding: 10px 20px;
-                min-width: 200px;
-            }
-
-            .heart-btn {
-                font-size: 18px;
-                padding: 8px 20px;
-            }
-
-            .heart-icon {
-                font-size: 24px;
-            }
-        }
-    </style>
+    .like-count {
+      font-weight: bold;
+    }
+  </style>
 </head>
-
 <body>
 
-    <div class="content-wrapper">
+  <!-- Chapter Story Content -->
+  <h1>The Last Consequence: The Birth of the Dark Spiral</h1>
+  <div class="subtitle">Chapter 1: A boring Start</div>
 
-        <h1> The Last Consequence: Birth of the Dark Spiral </h1>
-        <h2> Chapter 1: A Boring Start </h2>
+  <p>The weather is in a good mood that day as sunlight shines through the small gap of my curtain and entered my room. Realizing that it's already morning, I forced myself to get up from my bed and start preparing myself for this boring day. Greetings, my name is Elias Crowe. I am a 16-year-old teenage boy who lives in Birmingham, England.</p>
 
-        <p>
-            The weather is in a good mood that day as sunlight shines through the small gap of my curtain and entered my room. Realizing that it's already morning, I forced myself to get up from my bed and start preparing myself for this boring day. Greetings, my name is Elias Crowe. I am a 16-year-old teenage boy who lives in Birmingham, England.
-        </p>
+  <p>I have a brother named Liam that lives in the same small apartment as me. After getting dressed, I walk to my brother's room to wake him up, but to my surprise he is not there—only 20 pounds on his bed that he probably left for me. "At least it's still enough for some food," I said to myself, before putting the cash into my pocket and heading downstairs to eat breakfast.</p>
 
-        <p>
-            I have a brother named Liam that lives in the same small apartment as me. After getting dressed, I walk to my brother's room to wake him up, but to my surprise he is not there—only 20 pounds on his bed that he probably left for me. "At least it's still enough for some food," I said to myself, before putting the cash into my pocket and heading downstairs to eat breakfast.
-        </p>
+  <p>In the kitchen I made myself a bowl of cereal which I ate in an instant. It wasn't a lot, but at least enough to keep full for now. After finishing, I prepared myself to go to school. On my way to school, I realized that the temperature had dropped drastically; luckily, I put my coat on earlier. I sighed, forcing myself to keep walking.</p>
 
-        <p>
-            In the kitchen I made myself a bowl of cereal which I ate in an instant. It wasn't a lot, but at least enough to keep full for now. After finishing, I prepared myself to go to school. On my way to school, I realized that the temperature had dropped drastically; luckily, I put my coat on earlier. I sighed, forcing myself to keep walking.
-        </p>
+  <p>My brother and I didn't have much money, therefore I always had to walk a few miles to school every day. After walking for so long, I finally arrived at my school. I opened the double doors in front of me; I gasped out of exhaustion. My legs were getting sore, but I didn't give it a second thought and continued walking through the hallway to my class.</p>
 
-        <p>
-            My brother and I didn't have much money, therefore I always had to walk a few miles to school every day. After walking for so long, I finally arrived at my school. I opened the double doors in front of me; I gasped out of exhaustion. My legs were getting sore, but I didn't give it a second thought and continued walking through the hallway to my class.
-        </p>
+  <p>I walk to my classroom, wanting to take a seat and give myself some peace, but it turned out someone was already waiting for me. A banana peel was thrown right onto my face by Brian, one of my bullies. "Go on, throw it away little smartass," he said with arrogance, his friends immediately bursting out laughing at me.</p>
 
-        <p>
-            I walk to my classroom, wanting to take a seat and give myself some peace, but it turned out someone was already waiting for me. A banana peel was thrown right onto my face by Brian, one of my bullies. "Go on, throw it away little smartass," he said with arrogance, his friends immediately bursting out laughing at me.
-        </p>
+  <p>I stared at them with disgust before I wiped the banana peel from my face and threw it into the nearest trash can. Right after that joke, they just walked past me with no guilt whatsoever, and Brian whispered, "See you later, Twat." Long story short, the day at my school passed quickly and I managed to endure all of the lessons while walking down the hall of bullies who screamed "peel face" at me.</p>
 
-        <p>
-            I stared at them with disgust before I wiped the banana peel from my face and threw it into the nearest trash can. Right after that joke, they just walked past me with no guilt whatsoever, and Brian whispered, "See you later, Twat." Long story short, the day at my school passed quickly and I managed to endure all of the lessons while walking down the hall of bullies who screamed "peel face" at me.
-        </p>
+  <p>I just completely ignored them, not giving a damn about it; I was just thinking they were not worth my precious time. After a long walk home, I finally arrived. I took off my jacket, put down my backpack, and took a seat in my chair before starting my homework. But as time passed, my vision started to blur.</p>
 
-        <p>
-            I just completely ignored them, not giving a damn about it; I was just thinking they were not worth my precious time. After a long walk home, I finally arrived. I took off my jacket, put down my backpack, and took a seat in my chair before starting my homework. But as time passed, my vision started to blur.
-        </p>
+  <p>For a moment I thought I was just exhausted, so I laid my head on the table, giving myself a moment to rest. But as I drifted off to sleep, I saw something—something that I had never seen. In my dream, I saw a bright green sphere in my mind.</p>
 
-        <p>
-            For a moment I thought I was just exhausted, so I laid my head on the table, giving myself a moment to rest. But as I drifted off to sleep, I saw something—something that I had never seen. In my dream, I saw a bright green sphere in my mind.
-        </p>
+  <p>The sphere multiplied itself into 2, then 4, 8, 16, and so on. Then the spheres collided into each other. The collision caused a shockwave which was enough to wake me up from my sleep. As soon as I woke up, I ran up to my room, not even caring about my homework or the cup of coffee that shattered on the floor.</p>
 
-        <p>
-            The sphere multiplied itself into 2, then 4, 8, 16, and so on. Then the spheres collided into each other. The collision caused a shockwave which was enough to wake me up from my sleep. As soon as I woke up, I ran up to my room, not even caring about my homework or the cup of coffee that shattered on the floor.
-        </p>
+  <p>It wasn’t a dream—I had just crushed a coffee cup without touching it. I entered my room and quickly tucked myself in, trying to forget what had just happened earlier, and I just fell asleep.</p>
 
-        <p>
-            It wasn’t a dream—I had just crushed a coffee cup without touching it. I entered my room and quickly tucked myself in, trying to forget what had just happened earlier, and I just fell asleep.
-        </p>
+  <p>Hours later, my brother Liam finally arrived home. When he was about to go upstairs, he found the cup of coffee that shattered on the floor. He cleaned it without a second thought before finally going upstairs. Before entering his own room, he took a peek inside my bedroom.</p>
 
-        <p>
-            Hours later, my brother Liam finally arrived home. When he was about to go upstairs, he found the cup of coffee that shattered on the floor. He cleaned it without a second thought before finally going upstairs. Before entering his own room, he took a peek inside my bedroom.
-        </p>
+  <p>Realizing that I'd already drifted into a deep sleep, he approached me, grabbed some money out of his wallet, and put it on my nightstand. After saying goodnight to me, he walked into his own room and prepared to end the day.</p>
 
-        <p>
-            Realizing that I'd already drifted into a deep sleep, he approached me, grabbed some money out of his wallet, and put it on my nightstand. After saying goodnight to me, he walked into his own room and prepared to end the day.
-        </p>
+  <p>As the sun finally dipped below the horizon, the moon rose high into the sky. Midnight passed by peacefully. The day which would change my life forever was near...</p>
 
-        <p>
-            As the sun finally dipped below the horizon, the moon rose high into the sky. Midnight passed by peacefully. The day which would change my life forever was near...
-        </p>
+  <!-- Like Button Section -->
+  <div class="like-section">
+    <button id="like-btn" class="like-btn">
+      ❤️ <span class="like-count" id="like-count">0</span> Likes
+    </button>
+  </div>
 
-        <!-- Interactive Heart Button -->
-        <div class="heart-container">
-            <button class="heart-btn" id="likeBtn" disabled>
-                <span class="heart-icon" id="heartIcon">🤍</span> 
-                <span>Like</span>
-                <span class="like-count" id="likeCount">(0)</span>
-            </button>
-        </div>
+  <!-- Firebase Script Import & Initialization -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { 
+      getFirestore, doc, onSnapshot, runTransaction, arrayUnion, arrayRemove, increment 
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        <!-- Navigation Section -->
-        <div class="navigation">
-            <a href="https://emanueltuscher21.github.io/tlc/CHP2.html" class="nav-btn next-btn">Read Chapter 2 &#8594;</a>
-            <br>
-            <a href="index.html" class="nav-btn">&#8592; Back to Homepage</a>
-        </div>
+    // 1. REPLACE WITH YOUR FIREBASE PROJECT CONFIG
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
 
-    </div>
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, deleteDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    // 2. Persistent Unique User Identification (Device-Based)
+    let deviceId = localStorage.getItem('chapter_user_id');
+    if (!deviceId) {
+      deviceId = 'user_' + Math.random().toString(36).substring(2, 15);
+      localStorage.setItem('chapter_user_id', deviceId);
+    }
 
-        // Firebase configuration fallback
-        const defaultConfig = {
-            apiKey: "AIzaSyDemoKeyFallbackOnly12345",
-            authDomain: "tlc-story.firebaseapp.com",
-            projectId: "tlc-story",
-            storageBucket: "tlc-story.appspot.com",
-            messagingSenderId: "123456789",
-            appId: "1:123456789:web:abcdef123456"
-        };
+    const likeBtn = document.getElementById('like-btn');
+    const likeCountSpan = document.getElementById('like-count');
+    const docRef = doc(db, "chapters", "chapter1");
 
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : defaultConfig;
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'tlc-story-app';
+    // 3. Real-Time Listener (Updates count instantly across all visitors)
+    onSnapshot(docRef, (docSnap) => {
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        const likedBy = data.likedBy || [];
+        
+        likeCountSpan.textContent = data.count !== undefined ? data.count : likedBy.length;
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        const chapterId = 'chapter_1';
-        const storageKey = `tlc_${chapterId}_liked`;
-
-        const btn = document.getElementById('likeBtn');
-        const icon = document.getElementById('heartIcon');
-        const countSpan = document.getElementById('likeCount');
-
-        let isLiked = localStorage.getItem(storageKey) === 'true';
-        let currentUserId = null;
-        let isProcessing = false;
-
-        // Render local state immediately while authenticating
-        updateUI(0);
-
-        // Authenticate user anonymously
-        async function initAuth() {
-            try {
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
-                }
-            } catch (err) {
-                console.warn('Auth error, falling back to local toggle mode:', err);
-                enableLocalFallback();
-            }
+        // Toggle UI button state if this user already liked the chapter
+        if (likedBy.includes(deviceId)) {
+          likeBtn.classList.add('liked');
+        } else {
+          likeBtn.classList.remove('liked');
         }
+      }
+    });
 
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                currentUserId = user.uid;
-                btn.disabled = false;
-                listenToLikes();
-            }
-        });
+    // 4. Click Event with Atomic Transaction (Prevents race conditions)
+    likeBtn.addEventListener('click', async () => {
+      try {
+        await runTransaction(db, async (transaction) => {
+          const sfDoc = await transaction.get(docRef);
+          
+          if (!sfDoc.exists()) {
+            transaction.set(docRef, { count: 1, likedBy: [deviceId] });
+            return;
+          }
 
-        // Listen for real-time total likes across all users
-        function listenToLikes() {
-            const likesCollectionRef = collection(db, 'artifacts', appId, 'public', 'data', `${chapterId}_likes`);
+          const data = sfDoc.data();
+          const likedBy = data.likedBy || [];
+          const isLiked = likedBy.includes(deviceId);
 
-            onSnapshot(likesCollectionRef, (snapshot) => {
-                const totalLikes = snapshot.size;
-                
-                // If user's document exists in snapshot, sync state
-                if (currentUserId) {
-                    const userDocExists = snapshot.docs.some(doc => doc.id === currentUserId);
-                    if (userDocExists) {
-                        isLiked = true;
-                        localStorage.setItem(storageKey, 'true');
-                    }
-                }
-                
-                updateUI(totalLikes);
-            }, (error) => {
-                console.error("Error fetching likes:", error);
-                enableLocalFallback();
+          if (isLiked) {
+            // Unlike
+            transaction.update(docRef, {
+              count: increment(-1),
+              likedBy: arrayRemove(deviceId)
             });
-        }
+          } else {
+            // Like
+            transaction.update(docRef, {
+              count: increment(1),
+              likedBy: arrayUnion(deviceId)
+            });
+          }
+        });
+      } catch (e) {
+        console.error("Transaction failed: ", e);
+      }
+    });
+  </script>
 
-        // Toggle like status persistently
-        async function toggleLike() {
-            if (isProcessing) return;
-            isProcessing = true;
-
-            // Optimistic UI update
-            const oldIsLiked = isLiked;
-            isLiked = !isLiked;
-
-            if (isLiked) {
-                localStorage.setItem(storageKey, 'true');
-            } else {
-                localStorage.removeItem(storageKey);
-            }
-
-            let currentCount = parseInt(countSpan.textContent.replace(/\D/g, '')) || 0;
-            let optimisticCount = isLiked ? currentCount + 1 : Math.max(0, currentCount - 1);
-            updateUI(optimisticCount);
-
-            if (currentUserId && db) {
-                const userLikeDoc = doc(db, 'artifacts', appId, 'public', 'data', `${chapterId}_likes`, currentUserId);
-                try {
-                    if (isLiked) {
-                        await setDoc(userLikeDoc, { likedAt: new Date().toISOString() });
-                    } else {
-                        await deleteDoc(userLikeDoc);
-                    }
-                } catch (err) {
-                    console.error("Failed to update database like state:", err);
-                    // Revert optimistic state on failure
-                    isLiked = oldIsLiked;
-                    if (isLiked) {
-                        localStorage.setItem(storageKey, 'true');
-                    } else {
-                        localStorage.removeItem(storageKey);
-                    }
-                    updateUI(currentCount);
-                }
-            }
-            isProcessing = false;
-        }
-
-        function updateUI(count) {
-            countSpan.textContent = `(${count})`;
-
-            if (isLiked) {
-                icon.textContent = '❤️';
-                btn.classList.add('liked');
-            } else {
-                icon.textContent = '🤍';
-                btn.classList.remove('liked');
-            }
-        }
-
-        function enableLocalFallback() {
-            btn.disabled = false;
-            let fallbackCount = isLiked ? 1 : 0;
-            updateUI(fallbackCount);
-        }
-
-        btn.addEventListener('click', toggleLike);
-
-        // Start Auth process
-        initAuth();
-    </script>
 </body>
 </html>
