@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TLC - Chapter 3</title> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google Fonts for modern fantasy / sci-fi styling -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            text-align: center;
+            color: #f2f2f2;
+            margin-top: 100px; 
+            margin-bottom: 100px;
+            padding-left: 20px;
+            padding-right: 20px;
+            overflow-x: hidden;
+
+            /* Background settings - update C3.jpg for Chapter 3 */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('C3.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background-attachment: fixed;
+            background-color: #121212;
+
+            font-family: 'Inter', sans-serif;
+        }
+
+        .content-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.9), 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            letter-spacing: 1.5px;
+            color: #d1d1d1;
+            margin-bottom: 50px;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+        }
+
+        p {
+            font-size: 19px;
+            line-height: 1.8;
+            letter-spacing: 0.5px;
+            color: #e0e0e0;
+            margin-bottom: 28px;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
+            text-align: left;
+        }
+
+        .heart-container {
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .heart-btn {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50px;
+            padding: 10px 24px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: 'Cinzel', serif;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            user-select: none;
+            min-width: 170px;
+        }
+
+        .heart-btn:disabled {
+            opacity: 0.7;
+            cursor: wait;
+        }
+
+        .heart-icon {
+            font-size: 26px;
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .like-count {
+            font-size: 18px;
+            font-weight: 600;
+            color: #d1d1d1;
+            margin-left: 2px;
+        }
+
+        .heart-btn:hover:not(:disabled) {
+            transform: scale(1.08);
+            border-color: #ffffff;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .heart-btn.liked {
+            border-color: #ff4d4d;
+            background: rgba(255, 77, 77, 0.2);
+            box-shadow: 0 0 15px rgba(255, 77, 77, 0.5);
+        }
+
+        .heart-btn.liked .heart-icon {
+            transform: scale(1.2);
+        }
+
+        .heart-btn:active:not(:disabled) .heart-icon {
+            transform: scale(1.4);
+        }
+
+        .navigation {
+            margin-top: 30px;
+        }
+
+        .nav-btn {
+            display: inline-block;
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+            text-decoration: none;
+            border: 1px solid #ffffff;
+            padding: 12px 28px;
+            border-radius: 4px;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
+            margin-bottom: 16px;
+            min-width: 240px;
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            transform: scale(1);
+        }
+
+        .nav-btn:hover {
+            color: #ffffff;
+            border-color: #ffffff;
+            transform: scale(1.08);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+        }
+
+        .next-btn {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                margin-top: 50px;
+                background-attachment: scroll;
+            }
+
+            h1 {
+                font-size: 30px;
+                letter-spacing: 1px;
+            }
+
+            h2 {
+                font-size: 18px;
+                letter-spacing: 1px;
+                margin-bottom: 30px;
+            }
+
+            p {
+                font-size: 16px;
+                line-height: 1.6;
+            }
+
+            .nav-btn {
+                font-size: 16px;
+                padding: 10px 20px;
+                min-width: 200px;
+            }
+
+            .heart-btn {
+                font-size: 18px;
+                padding: 8px 20px;
+            }
+
+            .heart-icon {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="content-wrapper">
+
+        <h1>The Last Consequence: Birth of the Darkpoint</h1>
+        <h2>Chapter 3: The Stranger</h2>
+
+        <p>
+            I sat there in despair, not alone but with people I would never tolerate. I wasn’t warm or cold, the temperature was just okay, though I couldn’t stand the smell of the cell—I smelled like wet socks. Light shone through the only window we had. I had no intention of breaking out; I just had to wait a day.
+        </p>
+
+        <p>
+            Hours passed and I was bored to death, looking out the window, just observing the outside. Suddenly, I heard something from a distance. Then, in the blink of an eye, a person in dark clothing appeared—you couldn’t see his face. He headed toward the police station I was inside.
+        </p>
+
+        <p>
+            The stranger entered the building and was greeted by the person sitting at the front desk. He didn’t respond and just walked straight toward the cells. The clerk stopped him before he could go through the door, saying politely, "Hey, visitors aren’t allowed right now! If you want to release anyone, pay the bail first!"
+        </p>
+
+        <p>
+            The stranger looked back, and the clerk was thrown across the room, crashing against the glass and shattering it. While the clerk lay outside unconscious, police officers showed up pointing their guns at the stranger. One officer told him to raise his hands, which he didn’t do. He continued walking.
+        </p>
+
+        <p>
+            One shot rang out. The stranger dodged it, grabbed the officer, and threw him to the ground. The police officers were in shock. They fired at him, but the stranger dodged every bullet and struck them until they fell unconscious. He moved at non-human speed. A few seconds passed, and every police officer lay there on the floor. He made sure he didn’t kill anyone—only knock them unconscious.
+        </p>
+
+        <p>
+            I was terrified, thinking he would kill me. He walked toward my cell and opened the door. The inmates and I stood at the far edge of the cell, fearing death. The stranger asked me if I was Elias Crowe. I stuttered and said yes. He grabbed my arm and told me to follow him.
+        </p>
+
+        <p>
+            We ran away to his car parked a few miles away and quickly got inside. I asked nervously, "Why me? Where are you taking me, and who the fuck are you?"
+        </p>
+
+        <p>
+            He responded calmly, "You know you got a power. Your ability to control particles might save some lives someday. Also, we’re driving to Liverpool, and I’m James—or you can call me Crimson Bolt."
+        </p>
+
+        <p>
+            Out of curiosity, I responded, "Are you a superhero?"
+        </p>
+
+        <p>
+            He nodded and explained that he can move at non-human speed, but every day he needs electricity to fuel his powers—meaning he needed to extract electricity from a generator whenever his capacity got low. He drove as fast as he could, dodging the police, drifting his way out until he finally shook them off.
+        </p>
+
+        <p>
+            I was still in shock from how quickly everything happened, then I asked him, "How did you know my name, and how did you know I had a special ability?"
+        </p>
+
+        <p>
+            He was in a good mood, feeling elated, and answered, "Buddy, I’m going to show you later. First, we got to go to the coastline of Liverpool."
+        </p>
+
+        <p>
+            I was confused as to why we were heading there. We drove for two hours, and as we arrived at the coast, I looked around and said in confusion, "Now what?"
+        </p>
+
+        <p>
+            He responded instantly, "Put on this mask and jump on my back!"
+        </p>
+
+        <p>
+            Cops started appearing in the distance. Suddenly, he activated his carbon suit, and I was amazed. I put on the mask and jumped onto his back so he could carry me. He charged up as the police approached, then rushed forward, reaching incredible speeds as he crossed the Atlantic Ocean.
+        </p>
+
+        <p>
+            I struggled to hold on to him; it was so intense that I almost fell off. It took 30 minutes to reach our destination: the coast of Greenland. We hiked up the snowy mountains as exhaustion hit me.
+        </p>
+
+        <p>
+            When we reached a specific spot, James opened a control panel on the left arm of his suit. Suddenly, a huge door opened ahead—it had stayed completely hidden beneath the snow. I was stressed, amazed, and overwhelmed. Way too much had happened in such a short amount of time.
+        </p>
+
+        <p>
+            There are always consequences to any actions, but not all actions lead to bad luck…
+        </p>
+
+        <!-- Interactive Heart Button -->
+        <div class="heart-container">
+            <button class="heart-btn" id="likeBtn" disabled>
+                <span class="heart-icon" id="heartIcon">🤍</span> 
+                <span>Like</span>
+                <span class="like-count" id="likeCount">(0)</span>
+            </button>
+        </div>
+
+        <!-- Navigation Section -->
+        <div class="navigation">
+            <a href="CHP4.html" class="nav-btn next-btn">Read Chapter 4 &#8594;</a>
+            <br>
+            <a href="CHP2.html" class="nav-btn">&#8592; Previous Chapter</a>
+            <br>
+            <a href="index.html" class="nav-btn">Back to Homepage</a>
+        </div>
+
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, deleteDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Firebase configuration fallback
+        const defaultConfig = {
+            apiKey: "AIzaSyDemoKeyFallbackOnly12345",
+            authDomain: "tlc-story.firebaseapp.com",
+            projectId: "tlc-story",
+            storageBucket: "tlc-story.appspot.com",
+            messagingSenderId: "123456789",
+            appId: "1:123456789:web:abcdef123456"
+        };
+
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : defaultConfig;
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'tlc-story-app';
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Set Chapter ID specifically for Chapter 3
+        const chapterId = 'chapter_3';
+        const storageKey = `tlc_${chapterId}_liked`;
+
+        const btn = document.getElementById('likeBtn');
+        const icon = document.getElementById('heartIcon');
+        const countSpan = document.getElementById('likeCount');
+
+        let isLiked = localStorage.getItem(storageKey) === 'true';
+        let currentUserId = null;
+        let isProcessing = false;
+
+        // Render local state immediately while authenticating
+        updateUI(0);
+
+        // Authenticate user anonymously
+        async function initAuth() {
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+            } catch (err) {
+                console.warn('Auth error, falling back to local toggle mode:', err);
+                enableLocalFallback();
+            }
+        }
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                currentUserId = user.uid;
+                btn.disabled = false;
+                listenToLikes();
+            }
+        });
+
+        // Listen for real-time total likes across all users
+        function listenToLikes() {
+            const likesCollectionRef = collection(db, 'artifacts', appId, 'public', 'data', `${chapterId}_likes`);
+
+            onSnapshot(likesCollectionRef, (snapshot) => {
+                const totalLikes = snapshot.size;
+                
+                // If user's document exists in snapshot, sync state
+                if (currentUserId) {
+                    const userDocExists = snapshot.docs.some(doc => doc.id === currentUserId);
+                    if (userDocExists) {
+                        isLiked = true;
+                        localStorage.setItem(storageKey, 'true');
+                    }
+                }
+                
+                updateUI(totalLikes);
+            }, (error) => {
+                console.error("Error fetching likes:", error);
+                enableLocalFallback();
+            });
+        }
+
+        // Toggle like status persistently
+        async function toggleLike() {
+            if (isProcessing) return;
+            isProcessing = true;
+
+            // Optimistic UI update
+            const oldIsLiked = isLiked;
+            isLiked = !isLiked;
+
+            if (isLiked) {
+                localStorage.setItem(storageKey, 'true');
+            } else {
+                localStorage.removeItem(storageKey);
+            }
+
+            let currentCount = parseInt(countSpan.textContent.replace(/\D/g, '')) || 0;
+            let optimisticCount = isLiked ? currentCount + 1 : Math.max(0, currentCount - 1);
+            updateUI(optimisticCount);
+
+            if (currentUserId && db) {
+                const userLikeDoc = doc(db, 'artifacts', appId, 'public', 'data', `${chapterId}_likes`, currentUserId);
+                try {
+                    if (isLiked) {
+                        await setDoc(userLikeDoc, { likedAt: new Date().toISOString() });
+                    } else {
+                        await deleteDoc(userLikeDoc);
+                    }
+                } catch (err) {
+                    console.error("Failed to update database like state:", err);
+                    // Revert optimistic state on failure
+                    isLiked = oldIsLiked;
+                    if (isLiked) {
+                        localStorage.setItem(storageKey, 'true');
+                    } else {
+                        localStorage.removeItem(storageKey);
+                    }
+                    updateUI(currentCount);
+                }
+            }
+            isProcessing = false;
+        }
+
+        function updateUI(count) {
+            countSpan.textContent = `(${count})`;
+
+            if (isLiked) {
+                icon.textContent = '❤️';
+                btn.classList.add('liked');
+            } else {
+                icon.textContent = '🤍';
+                btn.classList.remove('liked');
+            }
+        }
+
+        function enableLocalFallback() {
+            btn.disabled = false;
+            let fallbackCount = isLiked ? 1 : 0;
+            updateUI(fallbackCount);
+        }
+
+        btn.addEventListener('click', toggleLike);
+
+        // Start Auth process
+        initAuth();
+    </script>
+</body>
+</html>
