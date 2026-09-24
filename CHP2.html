@@ -1,10 +1,8 @@
 <!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>TLC - Chapter 2</title> 
+<html>
+<head> 
+    <title> TLC - Chapter 2 </title> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <!-- Google Fonts for modern fantasy / sci-fi styling -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,31 +10,42 @@
 
     <style>
         body {
+            /* Center all text on the webpage */
             text-align: center;
+
+            /* Set text color for the entire page */
             color: #f2f2f2;
+
+            /* Push body content down from the top of the screen */
             margin-top: 100px; 
             margin-bottom: 100px;
             padding-left: 20px;
             padding-right: 20px;
+            
             overflow-x: hidden;
 
-            /* Background settings - update C1.jpg to C2.jpg if you have a separate image */
-            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('C2.jpg');
+            /* Fullscreen Background Image Settings matching the homepage */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('C1.png');
             background-repeat: no-repeat;
             background-position: center center;
-            background-size: cover;
-            background-attachment: fixed;
-            background-color: #121212;
+            background-size: cover; /* Stretches and scales image to fill entire screen */
+            background-attachment: fixed; /* Keeps image fixed while scrolling */
+            background-color: #121212; /* Dark fallback background */
 
+            /* Modern clean body font */
             font-family: 'Inter', sans-serif;
         }
 
+        /* Container to constrain reading width for clean readability */
         .content-wrapper {
             max-width: 800px;
             margin: 0 auto;
+
+            /* Smooth fade-in animation for the entire content block */
             animation: fadeIn 1.2s ease-out forwards;
         }
 
+        /* Fade-in Animation */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -48,6 +57,7 @@
             }
         }
 
+        /* Main Story Title */
         h1 {
             font-family: 'Cinzel', serif;
             font-size: 48px;
@@ -57,6 +67,7 @@
             text-shadow: 0 0 15px rgba(0, 0, 0, 0.9), 0 0 10px rgba(255, 255, 255, 0.2);
         }
 
+        /* Chapter Subtitle */
         h2 {
             font-family: 'Cinzel', serif;
             font-size: 24px;
@@ -66,6 +77,7 @@
             text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
         }
 
+        /* Paragraph Styling */
         p {
             font-size: 19px;
             line-height: 1.8;
@@ -73,76 +85,15 @@
             color: #e0e0e0;
             margin-bottom: 28px;
             text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
-            text-align: left;
         }
 
-        .heart-container {
-            margin-top: 40px;
-            margin-bottom: 20px;
-        }
-
-        .heart-btn {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 50px;
-            padding: 10px 24px;
-            font-size: 20px;
-            cursor: pointer;
-            color: #ffffff;
-            font-family: 'Cinzel', serif;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-            user-select: none;
-            min-width: 170px;
-        }
-
-        .heart-btn:disabled {
-            opacity: 0.7;
-            cursor: wait;
-        }
-
-        .heart-icon {
-            font-size: 26px;
-            display: inline-block;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .like-count {
-            font-size: 18px;
-            font-weight: 600;
-            color: #d1d1d1;
-            margin-left: 2px;
-        }
-
-        .heart-btn:hover:not(:disabled) {
-            transform: scale(1.08);
-            border-color: #ffffff;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-        }
-
-        .heart-btn.liked {
-            border-color: #ff4d4d;
-            background: rgba(255, 77, 77, 0.2);
-            box-shadow: 0 0 15px rgba(255, 77, 77, 0.5);
-        }
-
-        .heart-btn.liked .heart-icon {
-            transform: scale(1.2);
-        }
-
-        .heart-btn:active:not(:disabled) .heart-icon {
-            transform: scale(1.4);
-        }
-
+        /* Back Button Container */
         .navigation {
-            margin-top: 30px;
+            margin-top: 50px;
         }
 
-        .nav-btn {
+        /* Interactive Back Button with Smooth Scale & Glow */
+        .back-btn {
             display: inline-block;
             font-family: 'Cinzel', serif;
             font-size: 20px;
@@ -153,27 +104,25 @@
             padding: 12px 28px;
             border-radius: 4px;
             text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
-            margin-bottom: 16px;
-            min-width: 240px;
+            
+            /* Smooth transitions for hovering */
             transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
             transform: scale(1);
         }
 
-        .nav-btn:hover {
+        /* Back Button Hover Effect */
+        .back-btn:hover {
             color: #ffffff;
             border-color: #ffffff;
-            transform: scale(1.08);
+            transform: scale(1.1);
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
         }
 
-        .next-btn {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
+        /* Mobile Screen Optimizations */
         @media (max-width: 768px) {
             body {
                 margin-top: 50px;
-                background-attachment: scroll;
+                background-attachment: scroll; /* Smoother scrolling performance on mobile browsers */
             }
 
             h1 {
@@ -192,19 +141,9 @@
                 line-height: 1.6;
             }
 
-            .nav-btn {
+            .back-btn {
                 font-size: 16px;
                 padding: 10px 20px;
-                min-width: 200px;
-            }
-
-            .heart-btn {
-                font-size: 18px;
-                padding: 8px 20px;
-            }
-
-            .heart-icon {
-                font-size: 24px;
             }
         }
     </style>
@@ -214,251 +153,56 @@
 
     <div class="content-wrapper">
 
-        <h1>The Last Consequence: Birth of the Darkpoint</h1>
-        <h2>Chapter 2: What am I or What can I do?</h2>
+        <h1> The Last Consequence: Birth of the Dark Spiral </h1>
+        <h2> Chapter 1: What am I or What can I do? </h2>
 
         <p>
-            Another boring day, or so I thought. Instead of being sunny like yesterday, the sun was nowhere to be seen and the horizon only showed a dark gray mist softening all of the edges of trees and buildings. I stood up, but my legs kept shaking, my eyes constantly blinked. I felt really nauseous; just taking a step felt like hell.
+           Another boring day or so I thought. Instead of being sunny like yesterday, the sun was nowhere to be seen and the horizon only showed a dark gray mist softening all of the edges of trees and buildings. I stood up but my legs kept shaking, my eyes constantly blinked. I felt really nauseous, just taking a step felt like hell.        </p>
+
+        <p>
+            I I took one step then another and, in an instant, I felt such terrible pain, I fell. Now I just laid there on the ground helplessly. I raised my head then my upper body and at last my lower body. I legs were still shaking though I just fought through it and did my daily routine which is eating, preparing for school and making sure the house is fully secured like always.        </p>
+
+        <p>
+            After that I felt relieved and I stopped blinking constantly. Outside I calmly walked towards school whilst my body leaned left and right. My vision was blurry, I approached the road and I was about to step on the crosswalk, the l Traffic light was still bright red. Suddenly whilst my body leaned forward, a car came racing towards me.
         </p>
 
         <p>
-            I took one step, then another, and in an instant, I felt such terrible pain that I fell. Now I just lay there on the ground helplessly. I raised my head, then my upper body, and at last my lower body. My legs were still shaking, though I just fought through it and did my daily routine: eating, preparing for school, and making sure the house was fully secured like always. After that, I felt relieved and stopped blinking constantly.
-        </p>
+             I was about to be run over by a car but then my body froze halfway in place and my vision became clear again. I reacted instantly and with all my strength left in me pushed myself backwards. It worked, the car drove by and I had just survived something which could have been a tragic ending for me. I was shock, it felt like if had been lifted by an angel or something.        </p>
 
         <p>
-            Outside, I calmly walked towards school whilst my body leaned left and right. My vision was blurry. As I approached the road and was about to step on the crosswalk, the traffic light was still bright red. Suddenly, whilst my body leaned forward, a car came racing towards me.
-        </p>
+           It was really strange also because I slightly saw an object in my mind which I had seen before, before I felt asleep. I couldn’t remember and just waited for the lights to finally turn green        </p>
 
         <p>
-            I was about to be run over, but then my body froze halfway in place and my vision became clear again. I reacted instantly and, with all the strength left in me, pushed myself backwards. It worked. The car drove by, and I had just survived something which could have been a tragic ending for me.
-        </p>
+                   </p>
 
         <p>
-            I was in shock; it felt as if I had been lifted by an angel or something. It was really strange also because I slightly saw an object in my mind which I had seen before, before I fell asleep. I couldn’t remember and just waited for the light to finally turn green. I crossed, cautiously looking both sides, and after a few minutes I finally arrived at my school.
-        </p>
+                   </p>
 
         <p>
-            The double doors had already been opened; I walked to my class as always. Brian and his friends weren’t present today, and the first thought that came to my mind was that I was truly in luck on this day. I sat down with no regrets whatsoever and finished my homework from yesterday, which I wasn’t able to complete in time at home.
-        </p>
+                    </p>
 
         <p>
-            After the first and second lessons passed, I had my first lunch break. I kind of figured out that I had something special in me, like a power. While no one was looking, I took my pen and put it in front of me. I closed my eyes and tried to see those particles again.
-        </p>
+                  </p>
 
         <p>
-            I concentrated. After one minute, I saw one quick spark. I struggled, but tried even harder, and then I saw the spheres which apparently represent particles. They multiplied, and this time I wasn’t afraid—I had control. I slowly moved these particles to my pen. They instantly stuck to the pen, and with patience, I lifted the pen for just a slight second.
-        </p>
+                   </p>
 
         <p>
-            I didn’t lift it very high, just a few inches. I was excited and shocked that I had a secret ability. It seemed like these particles could lift several kilograms; I didn’t know what I was capable of yet.
-        </p>
+                   </p>
 
         <p>
-            Lessons went by, and in the second lunch break, I tried again. Instead of my pen, I used my pencil case. I tried everything, but I wasn’t ready to lift something that heavy yet.
-        </p>
+                   </p>
 
         <p>
-            After school, I went to the park where no one usually goes. I looked out for people around, though it was quite empty. I took my pencil case again, took a big breath in and out, and closed my eyes.
+            
         </p>
 
-        <p>
-            My forehead wrinkled, I squeezed my eyes, and instead of just moving the particles in my mind, I extended my arm. The particles stuck to the pencil case and I slowly moved my arm upwards whilst trying to lift the case. The movement of my arm somehow helped me lift it; it was levitating for just a few seconds.
-        </p>
-
-        <p>
-            I lowered the case to the ground. Proud of my progress, I tried something heavier: several cans of soda. I took two cans of soda, placed them on the ground, and tried lifting both of them. I concentrated again, but I couldn’t do it. I tried again and again until it started to rain.
-        </p>
-
-        <p>
-            I put on my hood and walked home, but I encountered the people I thought I wouldn’t see today: Brian and his friends. They came up to me and said, "Twat, what are you looking at? Want another banana peel on yourself?"
-        </p>
-
-        <p>
-            I sighed and responded quietly: "Go fuck yourself, Brian!"
-        </p>
-
-        <p>
-            He looked at me with anger and said, "Say that again, Elias!"
-        </p>
-
-        <p>
-            I stood there silently. He laughed and punched me right in my face. I lay there on the ground coughing blood. Him and his friends burst out laughing and took a picture of me on the ground.
-        </p>
-
-        <p>
-            He tried to hit me again, but without even closing my eyes, I stopped his fist. He couldn’t move, no matter how hard he tried. With immense force, I pushed him three meters back so hard that he hit a trash can. His friends ran away instantly after seeing such a rare instance. Brian spat blood and fell unconscious.
-        </p>
-
-        <p>
-            My fist was bloody, and the last thing I hoped would happen today happened: the police saw me hurting Brian. An officer came up to me, handcuffed me, and put me in custody. My brother couldn’t bail me out yet because he was still working, so I sat there in a cell waiting to get out. My day wasn’t all luck as I thought…
-        </p>
-
-        <!-- Interactive Heart Button -->
-        <div class="heart-container">
-            <button class="heart-btn" id="likeBtn" disabled>
-                <span class="heart-icon" id="heartIcon">🤍</span> 
-                <span>Like</span>
-                <span class="like-count" id="likeCount">(0)</span>
-            </button>
-        </div>
-
-        <!-- Navigation Section -->
+        <!-- Back Button Navigation -->
         <div class="navigation">
-            <a href="CHP3.html" class="nav-btn next-btn">Read Chapter 3 &#8594;</a>
-            <br>
-            <a href="CHP1.html" class="nav-btn">&#8592; Previous Chapter</a>
-            <br>
-            <a href="index.html" class="nav-btn">Back to Homepage</a>
+            <a href="index.html" class="back-btn">&#8592; Back to Homepage</a>
         </div>
 
     </div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, deleteDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Firebase configuration fallback
-        const defaultConfig = {
-            apiKey: "AIzaSyDemoKeyFallbackOnly12345",
-            authDomain: "tlc-story.firebaseapp.com",
-            projectId: "tlc-story",
-            storageBucket: "tlc-story.appspot.com",
-            messagingSenderId: "123456789",
-            appId: "1:123456789:web:abcdef123456"
-        };
-
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : defaultConfig;
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'tlc-story-app';
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        // Set Chapter ID specifically for Chapter 2
-        const chapterId = 'chapter_2';
-        const storageKey = `tlc_${chapterId}_liked`;
-
-        const btn = document.getElementById('likeBtn');
-        const icon = document.getElementById('heartIcon');
-        const countSpan = document.getElementById('likeCount');
-
-        let isLiked = localStorage.getItem(storageKey) === 'true';
-        let currentUserId = null;
-        let isProcessing = false;
-
-        // Render local state immediately while authenticating
-        updateUI(0);
-
-        // Authenticate user anonymously
-        async function initAuth() {
-            try {
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
-                }
-            } catch (err) {
-                console.warn('Auth error, falling back to local toggle mode:', err);
-                enableLocalFallback();
-            }
-        }
-
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                currentUserId = user.uid;
-                btn.disabled = false;
-                listenToLikes();
-            }
-        });
-
-        // Listen for real-time total likes across all users
-        function listenToLikes() {
-            const likesCollectionRef = collection(db, 'artifacts', appId, 'public', 'data', `${chapterId}_likes`);
-
-            onSnapshot(likesCollectionRef, (snapshot) => {
-                const totalLikes = snapshot.size;
-                
-                // If user's document exists in snapshot, sync state
-                if (currentUserId) {
-                    const userDocExists = snapshot.docs.some(doc => doc.id === currentUserId);
-                    if (userDocExists) {
-                        isLiked = true;
-                        localStorage.setItem(storageKey, 'true');
-                    }
-                }
-                
-                updateUI(totalLikes);
-            }, (error) => {
-                console.error("Error fetching likes:", error);
-                enableLocalFallback();
-            });
-        }
-
-        // Toggle like status persistently
-        async function toggleLike() {
-            if (isProcessing) return;
-            isProcessing = true;
-
-            // Optimistic UI update
-            const oldIsLiked = isLiked;
-            isLiked = !isLiked;
-
-            if (isLiked) {
-                localStorage.setItem(storageKey, 'true');
-            } else {
-                localStorage.removeItem(storageKey);
-            }
-
-            let currentCount = parseInt(countSpan.textContent.replace(/\D/g, '')) || 0;
-            let optimisticCount = isLiked ? currentCount + 1 : Math.max(0, currentCount - 1);
-            updateUI(optimisticCount);
-
-            if (currentUserId && db) {
-                const userLikeDoc = doc(db, 'artifacts', appId, 'public', 'data', `${chapterId}_likes`, currentUserId);
-                try {
-                    if (isLiked) {
-                        await setDoc(userLikeDoc, { likedAt: new Date().toISOString() });
-                    } else {
-                        await deleteDoc(userLikeDoc);
-                    }
-                } catch (err) {
-                    console.error("Failed to update database like state:", err);
-                    // Revert optimistic state on failure
-                    isLiked = oldIsLiked;
-                    if (isLiked) {
-                        localStorage.setItem(storageKey, 'true');
-                    } else {
-                        localStorage.removeItem(storageKey);
-                    }
-                    updateUI(currentCount);
-                }
-            }
-            isProcessing = false;
-        }
-
-        function updateUI(count) {
-            countSpan.textContent = `(${count})`;
-
-            if (isLiked) {
-                icon.textContent = '❤️';
-                btn.classList.add('liked');
-            } else {
-                icon.textContent = '🤍';
-                btn.classList.remove('liked');
-            }
-        }
-
-        function enableLocalFallback() {
-            btn.disabled = false;
-            let fallbackCount = isLiked ? 1 : 0;
-            updateUI(fallbackCount);
-        }
-
-        btn.addEventListener('click', toggleLike);
-
-        // Start Auth process
-        initAuth();
-    </script>
 </body>
 </html>
