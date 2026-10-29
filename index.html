@@ -109,7 +109,7 @@
         p:nth-child(15) { animation-delay: 1.0s; }
         p:nth-child(16) { animation-delay: 1.05s; }
         p:nth-child(17) { animation-delay: 1.1s; }
-        p:nth-child(18) { animation-delay: 1.2s; } /* Contact Button Delay */
+        p:nth-child(18) { animation-delay: 1.2s; } /* Action Buttons Delay */
 
         /* Interactive Link Styling */
         a {
@@ -132,22 +132,30 @@
             text-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
         }
 
-        /* Bigger & Downward Contact Button Styling */
-        a.contact-btn {
+        /* Container for bottom action buttons (Contact & Fanart side-by-side) */
+        .action-buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 45px;
+            flex-wrap: wrap;
+        }
+
+        /* Bigger & Downward Action Button Styling */
+        a.action-btn {
             font-family: 'Cinzel', serif;
-            font-size: 26px; /* Larger text size */
+            font-size: 24px;
             letter-spacing: 2px;
-            padding: 14px 36px; /* Bigger button size */
-            border: 2px solid #ffffff; /* Solid border box */
+            padding: 14px 32px;
+            border: 2px solid #ffffff;
             border-radius: 6px;
-            margin-top: 45px; /* Pushes the button further down from Chapter 15 */
             background-color: rgba(0, 0, 0, 0.4);
             box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
             
             transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
         }
 
-        a.contact-btn:hover {
+        a.action-btn:hover {
             transform: scale(1.1);
             background-color: rgba(255, 255, 255, 0.15);
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
@@ -176,9 +184,9 @@
                 font-size: 18px;
             }
 
-            a.contact-btn {
-                font-size: 20px;
-                padding: 10px 24px;
+            a.action-btn {
+                font-size: 18px;
+                padding: 10px 20px;
                 margin-top: 35px;
             }
         }
@@ -206,8 +214,11 @@
     <p><a href="CHP14.html">Read Chapter 14: Preparation [Release date: -]</a></p>
     <p><a href="CHP15.html">Read Chapter 15: Skyscrapers [Release date: -]</a></p>
 
-    <!-- Prominent Contact Button -->
-    <p><a href="Contact.html" class="contact-btn">Contact</a></p>
+    <!-- Contact and Fanart Action Buttons -->
+    <div class="action-buttons-container">
+        <p style="margin: 0;"><a href="Contact.html" class="action-btn">Contact</a></p>
+        <p style="margin: 0;"><a href="fanart.html" class="action-btn">Fanart</a></p>
+    </div>
 
 </body>
 </html>
