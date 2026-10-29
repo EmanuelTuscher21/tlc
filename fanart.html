@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TLC - Fanart Gallery</title> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            text-align: center;
+            color: #f2f2f2;
+            margin-top: 80px; 
+            margin-bottom: 80px;
+            padding-left: 20px;
+            padding-right: 20px;
+            overflow-x: hidden;
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), #121212;
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .content-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            letter-spacing: 1.5px;
+            color: #d1d1d1;
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+        }
+
+        /* Fanart Showcase Card with smooth shadow & hover zoom */
+        .art-card {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            margin-bottom: 30px;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            animation: scaleIn 0.8s ease-out forwards;
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .art-card img {
+            width: 100%;
+            max-height: 550px;
+            object-fit: contain;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .art-card img:hover {
+            transform: scale(1.02);
+        }
+
+        .art-title {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            color: #ffffff;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+
+        /* Inactive Next Arrow Section */
+        .arrow-container {
+            margin: 25px 0;
+        }
+
+        .next-arrow-btn {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #666666;
+            font-size: 24px;
+            padding: 10px 24px;
+            border-radius: 50px;
+            cursor: not-allowed;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Cinzel', serif;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+
+        .arrow-hint {
+            font-size: 14px;
+            color: #888888;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        /* Navigation Button Back */
+        .navigation {
+            margin-top: 40px;
+        }
+
+        .nav-btn {
+            display: inline-block;
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+            text-decoration: none;
+            border: 1px solid #ffffff;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 12px 28px;
+            border-radius: 4px;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
+            min-width: 220px;
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            border-color: #ffffff;
+            transform: scale(1.06);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content-wrapper">
+
+        <h1>The Last Consequence</h1>
+        <h2>Community Fanart Gallery</h2>
+
+        <!-- Main Fanart Display -->
+        <div class="art-card">
+            <!-- Ensure your image file is named matching this (e.g., Elias_Crowe_Fanart_Lunaribbon.png or .jpg) -->
+            <img src="Elias_Crowe_Fanart_Lunaribbon.png" alt="Elias Crowe - Lunaribbon Fanart" onerror="this.onerror=null; this.src='Elias_Crowe_Fanart_Lunaribbon.jpg';">
+            <div class="art-title">Elias Crowe: Lunaribbon</div>
+        </div>
+
+        <!-- Inactive Next Arrow -->
+        <div class="arrow-container">
+            <button class="next-arrow-btn" disabled title="No more fanart available">
+                <span>&#8594;</span>
+            </button>
+            <div class="arrow-hint">End of gallery — more fanart coming soon!</div>
+        </div>
+
+        <!-- Return Navigation -->
+        <div class="navigation">
+            <a href="index.html" class="nav-btn">&#8592; Back to Homepage</a>
+        </div>
+
+    </div>
+
+</body>
+</html>
