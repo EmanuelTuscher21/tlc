@@ -5,10 +5,10 @@
     <title>TLC - Chapter 6</title> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Google Fonts for modern fantasy / sci-fi styling -->
+    <!-- Google Fonts: Cinzel for headings, Inter for clean readability -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
         body {
@@ -20,14 +20,15 @@
             padding-right: 20px;
             overflow-x: hidden;
 
-            /* Background set to C6.png */
-            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('C6.png');
+            /* Visual Identity: Dark charcoal background with atmospheric overlay and crimson accent hints */
+            background-image: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.85)), url('C6.png');
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
             background-attachment: fixed;
             background-color: #121212;
 
+            /* Typography: Clean readable body font */
             font-family: 'Inter', sans-serif;
         }
 
@@ -38,23 +39,19 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-15px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Distinctive Headings using Cinzel */
         h1 {
             font-family: 'Cinzel', serif;
-            font-size: 48px;
+            font-size: 46px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 10px;
-            text-shadow: 0 0 15px rgba(0, 0, 0, 0.9), 0 0 10px rgba(255, 255, 255, 0.2);
+            margin-bottom: 12px;
+            color: #ffffff;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.9), 0 0 10px rgba(139, 0, 0, 0.3);
         }
 
         h2 {
@@ -66,27 +63,29 @@
             text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
         }
 
+        /* Typography & Spacing: Improved line-height and generous paragraph margins */
         p {
             font-size: 19px;
-            line-height: 1.8;
+            line-height: 1.9;
             letter-spacing: 0.5px;
             color: #e0e0e0;
-            margin-bottom: 28px;
+            margin-bottom: 35px;
             text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
             text-align: left;
         }
 
+        /* Heart Button Container & Styling */
         .heart-container {
-            margin-top: 40px;
-            margin-bottom: 20px;
+            margin-top: 50px;
+            margin-bottom: 30px;
         }
 
         .heart-btn {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(20, 20, 20, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 50px;
-            padding: 10px 24px;
-            font-size: 20px;
+            padding: 12px 28px;
+            font-size: 18px;
             cursor: pointer;
             color: #ffffff;
             font-family: 'Cinzel', serif;
@@ -94,8 +93,8 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
+            transition: all 0.3s ease;
             user-select: none;
             min-width: 170px;
         }
@@ -106,7 +105,7 @@
         }
 
         .heart-icon {
-            font-size: 26px;
+            font-size: 24px;
             display: inline-block;
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
@@ -119,15 +118,16 @@
         }
 
         .heart-btn:hover:not(:disabled) {
-            transform: scale(1.08);
-            border-color: #ffffff;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            transform: scale(1.06);
+            border-color: #8b0000;
+            background: rgba(139, 0, 0, 0.15);
+            box-shadow: 0 0 15px rgba(139, 0, 0, 0.4);
         }
 
         .heart-btn.liked {
             border-color: #ff4d4d;
             background: rgba(255, 77, 77, 0.2);
-            box-shadow: 0 0 15px rgba(255, 77, 77, 0.5);
+            box-shadow: 0 0 18px rgba(255, 77, 77, 0.5);
         }
 
         .heart-btn.liked .heart-icon {
@@ -138,74 +138,46 @@
             transform: scale(1.4);
         }
 
+        /* Navigation Styling with Crimson Accents */
         .navigation {
-            margin-top: 30px;
+            margin-top: 40px;
         }
 
         .nav-btn {
             display: inline-block;
             font-family: 'Cinzel', serif;
-            font-size: 20px;
+            font-size: 18px;
             letter-spacing: 1.5px;
             color: #ffffff;
             text-decoration: none;
-            border: 1px solid #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(20, 20, 20, 0.6);
             padding: 12px 28px;
             border-radius: 4px;
             text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
             margin-bottom: 16px;
             min-width: 240px;
-            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-            transform: scale(1);
+            transition: all 0.3s ease;
         }
 
         .nav-btn:hover {
             color: #ffffff;
-            border-color: #ffffff;
-            transform: scale(1.08);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+            border-color: #8b0000;
+            background: rgba(139, 0, 0, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(139, 0, 0, 0.4);
         }
 
         .next-btn {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.08);
         }
 
         @media (max-width: 768px) {
-            body {
-                margin-top: 50px;
-                background-attachment: scroll;
-            }
-
-            h1 {
-                font-size: 30px;
-                letter-spacing: 1px;
-            }
-
-            h2 {
-                font-size: 18px;
-                letter-spacing: 1px;
-                margin-bottom: 30px;
-            }
-
-            p {
-                font-size: 16px;
-                line-height: 1.6;
-            }
-
-            .nav-btn {
-                font-size: 16px;
-                padding: 10px 20px;
-                min-width: 200px;
-            }
-
-            .heart-btn {
-                font-size: 18px;
-                padding: 8px 20px;
-            }
-
-            .heart-icon {
-                font-size: 24px;
-            }
+            body { margin-top: 50px; background-attachment: scroll; }
+            h1 { font-size: 30px; }
+            h2 { font-size: 18px; margin-bottom: 30px; }
+            p { font-size: 16px; line-height: 1.7; margin-bottom: 24px; }
+            .nav-btn { font-size: 16px; padding: 10px 20px; min-width: 200px; }
         }
     </style>
 </head>
@@ -214,71 +186,35 @@
 
     <div class="content-wrapper">
 
-        <h1>The Last Consequence: Birth of the Darkpoint</h1>
+        <h1>The Last Consequence: Birth of the Dark Spiral</h1>
         <h2>Chapter 6: Unseen Potential</h2>
 
         <p>
-            I woke up tiredly, initially thinking I had just dreamt all of it—which wasn’t true at all. I got off my bed, rubbing my eyes with my hand, and yawned as I walked to the door. I opened it and began strolling around the base. In the kitchen, I searched for some food, but there was only nutritious food available—not a single chocolate bar or anything even slightly unhealthy. I didn’t care and feasted until I wasn’t hungry anymore. Having slept well and eaten as healthily as possible, I felt strong again.
+            I tiredly woke up, thinking he had just dreamt which wasn’t true at all. I got off my bed rubbing my eyes with my hand, yawning while I walked to the door. I opened the door and strolling around the base. In the kitchen I searched for some food but there was only nutritious food and not a single chocolate bar or anything slightly unhealthy. I didn’t care and feasted till I wasn’t hungry anymore. I had slept well and feasted as healthy as possible, I felt strong again. I felt like exploring which I did till I was confronted by James. He stood there slurping coffee dressed regularly not like most times in which he would either wear his suit or his undercover costume. With a relaxing tone he said to me: Buddy you have been sleeping way too long. He looked down on his modern watch, nodded slightly telling me it was time to continue the training. I was disappointed but had no other choice then I just followed him to the gym. The fact that he all had that in just one place, how could he afford that and did he always live here by himself. James explained he had to make a near to perfect being, therefore preparing me physically and mentally, having an ability isn’t a complete gift, if you can’t control it then you could just be danger to everyone. It was James’s responsibility to lead me to correct path to become a protector not a threat to humanity.
         </p>
 
         <p>
-            I felt like exploring, which I did until I was confronted by James. He stood there slurping coffee, dressed in regular clothes rather than his usual suit or undercover outfit. In a relaxing tone, he said to me, "Buddy, you’ve been sleeping way too long." He looked down at his modern watch, nodded slightly, and told me it was time to continue training.
+            First Challenge I had to complete 10 push ups which didn’t seem difficult to me. I lowered myself to the ground and stretching my legs to back and pushing both arms to the ground. I pushed myself up and down till he put a 50-pound kettlebell on me. It was way to heavy; I wasn’t weak but working out wasn’t my thing really, I wasn’t that skinny but I only cared about learning and making money, this whole thing was never planned. In this situation I couldn’t even a bit, almost like being paralyzed. James lifted the kettlebell of me and said in a strict: You’re far from being ready’’. Pull ups came up next, I laid my hands on the iron bar, making sure I had a good grip on the bar. Looked to right, seeing James standing there with crossed arms, he was giving me a strict look. I gave it all just to do only pull up and to collapse to the ground. These were only exercises; I kept going doing way more than I had thought I would do.
         </p>
 
         <p>
-            I was disappointed, but having no other choice, I followed him to the gym. How could he afford to have all of this in one place, and had he always lived here by himself? James explained that he had to make me a near-perfect being, preparing me both physically and mentally. Having an ability isn’t a complete gift—if you can’t control it, you could easily become a danger to everyone. It was James’s responsibility to lead me onto the correct path: to become a protector, not a threat to humanity.
+            Then finally the last exercise, it all made me steaming red out of exhaustion, I wasn’t angry, I was just complete hungover. I was swaying around, heart beating rapidly, eyes spinning making me dizzy as hell. At the same time, I was nauseous felling like I was about throw up all over the gym. While my vision was blurry James disappeared, I head to the bathroom, struggling to walk and keep balance. I leaned my arm against the wall and going forward while keeping my hand on the wall. The only thing that helped was to inhale and exhale slowly. I shoved open the door, drinking water forcefully out the bathroom sink. The fresh water helped me getting better but then I tasted blood, I felt pain in my throat. I lowered my head down, starting coughing blood, spitting into the sink whilst covering even slightly the mirror. Everything hurt, I started shaking, I gripped the outer part of the sink. I raised my head seeing myself, the sink and the mirror covered in blood, I smiled then my eyes glanced upwards. My vision faded into darkness, I went unconscious, losing gripping and falling to crash land to the floor.
         </p>
 
         <p>
-            My first challenge was to complete 10 push-ups, which didn’t seem difficult to me. I lowered myself to the ground, extending my legs back and pushing with both arms. I pushed myself up and down until he placed a 50-pound kettlebell on my back. It was far too heavy. I wasn’t weak, but working out had never been my thing; while I wasn't super skinny, I had only ever cared about studying and making money. This whole situation was never planned. I couldn't move even a fraction of an inch, feeling almost paralyzed under the weight.
+            Yeah, it wasn’t easy, quickly starting a training this hard, I was always exhausted no matter what. In the next months I learned to control my powers and strengthen my weaknesses. I had to perform these exercises every third day in the week, there was a day in which I could take a long break. The week was divided into 2 days physical training, 2 days mental training, 2 days ability training and the last day was always a new challenge to achieve a new skill. I now knew what physical training was but the other things weren’t easy either. I had to read lots of books, learn every general topic or even learnt how to read people’s expressions and predict their next moves, it was a challenge but compared to the other training it was the easiest because I am generally intelligent.
         </p>
 
         <p>
-            James lifted the kettlebell off me and said in a strict tone, "You’re far from being ready."
+            And then there’s the ability training in which I had to lift, crush or split something starting with wood block which weighed 5 Kilograms, it was the heaviest I had ever attempted to lift, the schoolbag which was my previous record was only half of that. The first ever challenge or the hardest of them was the weekly final challenge first was of the run through the snow which for some reason was on the second day, the weekly final was then moved to Sunday meaning I had to run through the snow, adjusting my body till I managed to get back to base in just 10 Minutes, I never knew where I would start therefore had to memorize every location, this final took me months. The only reason why my body even could adjust that quickly was because of my ability, it not only gave me the powers to manipulate my own particles to move them to a certain point but also to recover even quicker the stronger I mentally and physically got. Another quite difficult was that I had to sometimes attempt to attack James, I had to learn fighting techniques and adjust to his tempo, I of course never won because I’m far away from even being as strong as him.
         </p>
 
         <p>
-            Pull-ups came up next. I placed my hands on the iron bar, ensuring a solid grip. Looking to my right, I saw James standing with crossed arms, giving me a stern look. I gave it everything I had just to do a single pull-up, only to collapse to the ground right after. These were only the initial exercises, and I kept going, doing far more than I thought I ever could.
+            After all of this, the challenges which were immensely impossible for me, were now after 6 months a piece of cake. The time had come for more difficult challenges something more demanding. This time he didn’t just strand me anywhere but he accompanied to a huge snowy mountain. I was a few thousand meters tall, taking a while to get up to it. When we arrived at the highest point, I lowered my head down out of exhaustion whilst seeing the bottom. It was quite high up and making me nervous. I didn’t really have a fear of height though this was a far from the height I’m used to. I looked back to James attempting to ask him what to do. He stretched himself and then said, "Save yourself Kid" like a joke. I thought I just had to run down in a certain time. I smirked and said, "this won't be difficult."
         </p>
 
         <p>
-            Finally came the last exercise. The intensity made my face steam red from sheer exhaustion. I wasn’t angry—I was completely drained. I was swaying around, my heart beating rapidly, and my head spinning so badly I felt dizzy as hell. At the same time, I was nauseous, feeling as if I was about to throw up all over the gym floor.
-        </p>
-
-        <p>
-            While my vision was blurry, James disappeared. I stumbled toward the bathroom, struggling to walk and keep my balance. I leaned my arm against the wall, shuffling forward step by step. The only thing that helped was forcing myself to inhale and exhale slowly.
-        </p>
-
-        <p>
-            I shoved open the door and forcefully drank water straight out of the bathroom sink. The cool water helped me feel slightly better, but then I tasted blood and felt a sharp pain in my throat. I lowered my head and began coughing blood, spitting into the sink and splattering the mirror. Everything hurt. I started shaking violently and gripped the edges of the sink. Raising my head, I saw myself, the sink, and the mirror covered in blood. I smiled faintly before my eyes rolled upward. My vision faded into darkness, and I went unconscious, losing my grip and crash-landing onto the floor.
-        </p>
-
-        <p>
-            Starting a routine this intense was never going to be easy; I was constantly exhausted no matter what. Over the next few months, however, I learned to control my powers and strengthen my weaknesses.
-        </p>
-
-        <p>
-            I had to perform these workouts every third day of the week, with one day allocated for a long break. The weekly schedule was divided into two days of physical training, two days of mental training, two days of ability training, and the final day was dedicated to a new challenge to unlock a new skill. I understood physical training, but the other subjects weren't easy either. I had to read countless books, master general academic subjects, and even learn how to read people’s facial expressions to predict their next moves. It was challenging, but compared to the physical toll, it was the easiest part for me because I am naturally intelligent.
-        </p>
-
-        <p>
-            Then there was ability training, where I had to lift, crush, or split various objects. We started with a wooden block weighing 5 kilograms—the heaviest object I had ever attempted to lift, considering my previous record with my schoolbag was only half that weight.
-        </p>
-
-        <p>
-            The weekly final challenges were by far the hardest. The first one involved running through the snow, which originally took place on the second day before being moved to Sunday. I had to sprint through freezing conditions and adjust my body until I managed to return to the base in just 10 minutes. Since I never knew where I would be dropped off, I had to memorize every square mile of the surrounding location. Mastering this single challenge took months.
-        </p>
-
-        <p>
-            The only reason my body could adapt that quickly was because of my particle manipulation. It didn't just grant me the power to move external particles—it also allowed me to manipulate my own body's particles to recover exponentially faster as I grew stronger physically and mentally.
-        </p>
-
-        <p>
-            Another difficult task required me to attack James directly. I had to learn combat techniques and adapt to his blinding pace. Naturally, I never won a single match—I was nowhere near as strong as he was.
-        </p>
-
-        <p>
-            Yet after six months of relentless conditioning, the tasks that once seemed impossible became a piece of cake. It was finally time for a more difficult challenge—something that wouldn't be quite so easy.
+            He pushed me off the mountain and started speeding towards the bottom. I was helplessly falling and attempting to grip the mountains ridges. They kept breaking and I started screaming: "WHAT THE FUCK IS THIS, YOU ARE REALLY TRYING TO KILL ME AGAIN!" I didn’t see him run down therefore I thought I just had to save myself without his help. I faced down, closed my eyes, and concentrated my particles. I was about to hit the ground and I tried lifting myself. It didn’t work. I crossed my arms and hoped I wouldn’t hit any of the spikes that were peeking through the snow. Will he save me or is this the last time he saves me? I squeezed my eyes out of fear. Death always comes closer than you would ever think…
         </p>
 
         <!-- Interactive Heart Button -->
@@ -301,12 +237,12 @@
 
     </div>
 
+    <!-- Firebase Like System Script -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, setDoc, deleteDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Firebase configuration fallback
         const defaultConfig = {
             apiKey: "AIzaSyDemoKeyFallbackOnly12345",
             authDomain: "tlc-story.firebaseapp.com",
@@ -323,7 +259,6 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // Set Chapter ID specifically for Chapter 6
         const chapterId = 'chapter_6';
         const storageKey = `tlc_${chapterId}_liked`;
 
@@ -335,10 +270,8 @@
         let currentUserId = null;
         let isProcessing = false;
 
-        // Render local state immediately while authenticating
         updateUI(0);
 
-        // Authenticate user anonymously
         async function initAuth() {
             try {
                 if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
@@ -360,14 +293,12 @@
             }
         });
 
-        // Listen for real-time total likes across all users
         function listenToLikes() {
             const likesCollectionRef = collection(db, 'artifacts', appId, 'public', 'data', `${chapterId}_likes`);
 
             onSnapshot(likesCollectionRef, (snapshot) => {
                 const totalLikes = snapshot.size;
                 
-                // If user's document exists in snapshot, sync state
                 if (currentUserId) {
                     const userDocExists = snapshot.docs.some(doc => doc.id === currentUserId);
                     if (userDocExists) {
@@ -383,12 +314,10 @@
             });
         }
 
-        // Toggle like status persistently
         async function toggleLike() {
             if (isProcessing) return;
             isProcessing = true;
 
-            // Optimistic UI update
             const oldIsLiked = isLiked;
             isLiked = !isLiked;
 
@@ -412,7 +341,6 @@
                     }
                 } catch (err) {
                     console.error("Failed to update database like state:", err);
-                    // Revert optimistic state on failure
                     isLiked = oldIsLiked;
                     if (isLiked) {
                         localStorage.setItem(storageKey, 'true');
@@ -445,7 +373,6 @@
 
         btn.addEventListener('click', toggleLike);
 
-        // Start Auth process
         initAuth();
     </script>
 </body>
